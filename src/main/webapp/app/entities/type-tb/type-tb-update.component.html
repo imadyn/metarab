@@ -1,0 +1,78 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-type-tb-heading" jhiTranslate="metarabApp.typeTB.home.createOrEditLabel">Create or edit a Type TB</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="metarabApp.typeTB.code" for="field_code">Code</label>
+                    <input type="text" class="form-control" name="code" id="field_code"
+                           formControlName="code"/>
+                    <div *ngIf="editForm.get('code').invalid && (editForm.get('code').dirty || editForm.get('code').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('code').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('code').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 32 }">
+                        This field cannot be longer than 32 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="metarabApp.typeTB.ordre" for="field_ordre">Ordre</label>
+                    <input type="text" class="form-control" name="ordre" id="field_ordre"
+                           formControlName="ordre"/>
+                    <div *ngIf="editForm.get('ordre').invalid && (editForm.get('ordre').dirty || editForm.get('ordre').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('ordre').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('ordre').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 1 }">
+                        This field cannot be longer than 1 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="metarabApp.typeTB.type" for="field_type">Type</label>
+                    <select class="form-control" name="type" formControlName="type" id="field_type">
+                        <option value="HACHW">{{'metarabApp.Type.HACHW' | translate}}</option>
+                        <option value="AROUD">{{'metarabApp.Type.AROUD' | translate}}</option>
+                        <option value="DARB">{{'metarabApp.Type.DARB' | translate}}</option>
+                        <option value="RYTHME">{{'metarabApp.Type.RYTHME' | translate}}</option>
+                        <option value="MESURE">{{'metarabApp.Type.MESURE' | translate}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="metarabApp.typeTB.refBahr" for="field_refBahr">Ref Bahr</label>
+                    <select class="form-control" id="field_refBahr" name="refBahr" formControlName="refBahrId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="refBahrOption.id" *ngFor="let refBahrOption of refbahrs; trackBy: trackRefBahrById">{{refBahrOption.id}} | {{refBahrOption.code}} | {{refBahrOption.name}} {{refBahrOption.style}} | {{refBahrOption.signature}} </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="metarabApp.typeTB.refRhythm" for="field_refRhythm">Ref Rhythm</label>
+                    <select class="form-control" id="field_refRhythm" name="refRhythm" formControlName="refRhythmId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="refRhythmOption.id" *ngFor="let refRhythmOption of refrhythms; trackBy: trackRefRhythmById">{{refRhythmOption.id}}| {{refRhythmOption.code}} | {{refRhythmOption.name}} | {{refRhythmOption.transform}} | {{refRhythmOption.valeur}} | {{refRhythmOption.parentId}} </option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

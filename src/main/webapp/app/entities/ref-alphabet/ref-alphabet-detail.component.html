@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="refAlphabet">
+            <h2><span jhiTranslate="metarabApp.refAlphabet.detail.title">Ref Alphabet</span> {{refAlphabet.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="metarabApp.refAlphabet.code">Code</span></dt>
+                <dd>
+                    <span>{{refAlphabet.code}}</span>
+                </dd>
+                <dt><span jhiTranslate="metarabApp.refAlphabet.name">Name</span></dt>
+                <dd>
+                    <span>{{refAlphabet.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="metarabApp.refAlphabet.rhythm">Rhythm</span></dt>
+                <dd>
+                    <span>{{refAlphabet.rhythm}}</span>
+                </dd>
+                <dt><span jhiTranslate="metarabApp.refAlphabet.language">Language</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'metarabApp.Language.' + refAlphabet.language}}">{{refAlphabet.language}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/ref-alphabet', refAlphabet.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

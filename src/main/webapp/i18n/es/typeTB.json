@@ -1,0 +1,27 @@
+{
+  "metarabApp": {
+    "typeTB": {
+      "home": {
+        "title": "Type TBS",
+        "createLabel": "Crear nuevo Type TB",
+        "createOrEditLabel": "Crear o editar Type TB",
+        "search": "Search for Type TB",
+        "notFound": "No Type TBS found"
+      },
+      "created": "Un nuevo Type TB ha sido creado con el identificador {{ param }}",
+      "updated": "Un Type TB ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Type TB ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Type TB {{ id }}?"
+      },
+      "detail": {
+        "title": "Type TB"
+      },
+      "code": "Code",
+      "ordre": "Ordre",
+      "type": "Type",
+      "refBahr": "Ref Bahr",
+      "refRhythm": "Ref Rhythm"
+    }
+  }
+}

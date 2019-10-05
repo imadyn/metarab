@@ -1,0 +1,59 @@
+{
+    "name": "RefRhythm",
+    "fields": [
+        {
+            "fieldName": "code",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 32
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 64
+        },
+        {
+            "fieldName": "valeur",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 100
+        },
+        {
+            "fieldName": "transform",
+            "fieldType": "Transform",
+            "fieldValues": "IDENTITE,KHABN,WAKS,IDMAR,TAY,KABD,AKLE,ASBE,KAF,KHABL,KHAZL,CHAKL,NAKS,TATHBIL,TARFIL,TASBIGH,HATHF,KATF,KATAE,BATR,KASR,HATHATH,SALAM,WAKF,KACHF,KHARM,TACHEIT,KABL",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "refRhythm",
+            "otherEntityRelationshipName": "refRhythm",
+            "relationshipName": "parent",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190831204520",
+    "entityTableName": "ref_rhythm",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "searchEngine": "elasticsearch"
+}

@@ -1,0 +1,68 @@
+entity RefBahr {
+	code String required maxlength(32),
+        name String required maxlength(64),
+        signature String required maxlength(10),
+        style Style required
+}
+
+entity RefRhythm {
+	code String required maxlength(32),
+	name String required maxlength(64),
+        valeur String required maxlength(100),
+        transform Transform required
+}
+
+entity TypeTB {
+	code String required maxlength(32),
+	ordre String required maxlength(1),
+        type Type
+}
+
+entity RefAlphabet {
+	code String required maxlength(32),
+	name String required maxlength(64),
+        rhythm String required maxlength(3),
+        language Language
+}
+
+enum Type {
+    HACHW, AROUD, DARB, RYTHME, MESURE
+}
+
+enum Style {
+    TAME, WAFI, MAJZOE, MACHTOR, MANHOK
+}
+enum Transform {
+IDENTITE, KHABN, WAKS, IDMAR, TAY, KABD, AKLE, ASBE, 
+KAF, KHABL, KHAZL, CHAKL, NAKS,
+TATHBIL, TARFIL, TASBIGH, HATHF, KATF, KATAE, 
+BATR, KASR, HATHATH, SALAM, WAKF, KACHF, KHARM,
+TACHEIT, KABL
+}
+
+enum Language {
+    FRENCH, ENGLISH, SPANISH, ARABIC
+}
+relationship ManyToOne {
+    TypeTB{refBahr(id)} to RefBahr
+} 
+relationship ManyToOne {
+    TypeTB{refRhythm(id)} to RefRhythm
+} 
+relationship ManyToOne {
+	RefBahr{parent} to RefBahr
+}
+relationship ManyToOne {
+	RefRhythm{parent} to RefRhythm
+}
+
+paginate RefAlphabet, RefBahr, RefRhythm, TypeTB with pagination
+
+dto * with mapstruct
+
+service all with serviceImpl
+
+filter *
+
+search * with elasticsearch
+

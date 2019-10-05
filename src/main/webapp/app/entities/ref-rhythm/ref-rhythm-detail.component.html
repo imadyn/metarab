@@ -1,0 +1,45 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="refRhythm">
+            <h2><span jhiTranslate="metarabApp.refRhythm.detail.title">Ref Rhythm</span> {{refRhythm.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="metarabApp.refRhythm.code">Code</span></dt>
+                <dd>
+                    <span>{{refRhythm.code}}</span>
+                </dd>
+                <dt><span jhiTranslate="metarabApp.refRhythm.name">Name</span></dt>
+                <dd>
+                    <span>{{refRhythm.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="metarabApp.refRhythm.valeur">Valeur</span></dt>
+                <dd>
+                    <span>{{refRhythm.valeur}}</span>
+                </dd>
+                <dt><span jhiTranslate="metarabApp.refRhythm.transform">Transform</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'metarabApp.Transform.' + refRhythm.transform}}">{{refRhythm.transform}}</span>
+                </dd>
+                <dt><span jhiTranslate="metarabApp.refRhythm.parent">Parent</span></dt>
+                <dd>
+                    <div *ngIf="refRhythm.parentId">
+                        <a [routerLink]="['/ref-rhythm', refRhythm.parentId, 'view']">{{refRhythm.parentId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/ref-rhythm', refRhythm.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

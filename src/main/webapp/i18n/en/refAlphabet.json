@@ -1,0 +1,26 @@
+{
+  "metarabApp": {
+    "refAlphabet": {
+      "home": {
+        "title": "Ref Alphabets",
+        "createLabel": "Create a new Ref Alphabet",
+        "createOrEditLabel": "Create or edit a Ref Alphabet",
+        "search": "Search for Ref Alphabet",
+        "notFound": "No Ref Alphabets found"
+      },
+      "created": "A new Ref Alphabet is created with identifier {{ param }}",
+      "updated": "A Ref Alphabet is updated with identifier {{ param }}",
+      "deleted": "A Ref Alphabet is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Ref Alphabet {{ id }}?"
+      },
+      "detail": {
+        "title": "Ref Alphabet"
+      },
+      "code": "Code",
+      "name": "Name",
+      "rhythm": "Rhythm",
+      "language": "Language"
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "ac.fidoteam.alkhalil",
+      "nativeLanguage": "ar-ly"
+    },
+    "jhipsterVersion": "6.2.0",
+    "applicationType": "monolith",
+    "baseName": "metarab",
+    "packageName": "ac.fidoteam.alkhalil",
+    "packageFolder": "ac/fidoteam/alkhalil",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": "elasticsearch",
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "OGI1MDFmZGQzNjAyMjgxNGYxNmZmMDI2Y2RmNzM1ODYyY2U5YTEyNzcyZjc1ZDNlNTkyNGNkYjZkMDUwYTJiZjM1M2Y1MTM5NmMwZjk0NTMyNTJkNTQxMTAxZDMyOTRmY2E2ZWNiNWI2MzVmZmM3YTlmZDBkYWQ5YTA5MzMzZDM=",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "testFrameworks": [
+      "protractor"
+    ],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [
+      {
+        "name": "generator-jhipster-nav-element",
+        "version": "2.1.10"
+      },
+      {
+        "name": "generator-jhipster-docker",
+        "version": "2.5.0"
+      },
+      {
+        "name": "generator-jhipster-swagger-cli",
+        "version": "3.0.1"
+      },
+      {
+        "name": "generator-jhipster-electron",
+        "version": "1.0.0"
+      },
+      {
+        "name": "generator-jhipster-audit-helper",
+        "version": "1.0.3"
+      },
+      {
+        "name": "generator-codegen",
+        "version": "0.3.1"
+      },
+      {
+        "name": "generator-jhipster-angular-material-integration",
+        "version": "1.0.17"
+      },
+      {
+        "name": "generator-jhipster-uaa-security-authority",
+        "version": "1.0.1"
+      },
+      {
+        "name": "generator-jhipster-translation",
+        "version": "1.0.4"
+      },
+      {
+        "name": "generator-jhipster-vmware-clarity",
+        "version": "1.1.1"
+      },
+      {
+        "name": "generator-jhipster-chatbot-rasa",
+        "version": "1.0.4"
+      }
+    ],
+    "enableTranslation": true,
+    "nativeLanguage": "ar-ly",
+    "languages": [
+      "ar-ly",
+      "en",
+      "fr",
+      "es"
+    ],
+    "blueprints": []
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "metarabApp": {
+    "refBahr": {
+      "home": {
+        "title": "مرجع البحور",
+        "createLabel": "Create a new Ref Bahr",
+        "createOrEditLabel": "Create or edit a Ref Bahr",
+        "search": "Search for Ref Bahr",
+        "notFound": "No Ref Bahrs found"
+      },
+      "created": "A new Ref Bahr is created with identifier {{ param }}",
+      "updated": "A Ref Bahr is updated with identifier {{ param }}",
+      "deleted": "A Ref Bahr is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Ref Bahr {{ id }}?"
+      },
+      "detail": {
+        "title": "مرجع البحر"
+      },
+      "code": "رمز",
+      "name": "اسم البحر",
+      "signature": "Signature",
+      "style": "اسلوب",
+      "parent": "اصل البحر"
+    }
+  }
+}

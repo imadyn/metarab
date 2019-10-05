@@ -1,0 +1,27 @@
+{
+  "metarabApp": {
+    "refBahr": {
+      "home": {
+        "title": "Ref Bahrs",
+        "createLabel": "Crear nuevo Ref Bahr",
+        "createOrEditLabel": "Crear o editar Ref Bahr",
+        "search": "Search for Ref Bahr",
+        "notFound": "No Ref Bahrs found"
+      },
+      "created": "Un nuevo Ref Bahr ha sido creado con el identificador {{ param }}",
+      "updated": "Un Ref Bahr ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Ref Bahr ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Ref Bahr {{ id }}?"
+      },
+      "detail": {
+        "title": "Ref Bahr"
+      },
+      "code": "Code",
+      "name": "Name",
+      "signature": "Signature",
+      "style": "Style",
+      "parent": "Parent"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "metarabApp": {
+    "Type": {
+      "null": "",
+      "HACHW": "حشو",
+      "AROUD": "عروض",
+      "DARB": "ضرب",
+      "PAS": "خطوة",
+      "MESURE": "وزن"
+    }
+  }
+}

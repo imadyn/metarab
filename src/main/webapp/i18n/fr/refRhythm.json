@@ -1,0 +1,27 @@
+{
+  "metarabApp": {
+    "refRhythm": {
+      "home": {
+        "title": "RefRhythms",
+        "createLabel": "Créer un nouveau Ref Rhythm",
+        "createOrEditLabel": "Créer ou éditer un Ref Rhythm",
+        "search": "Recherche pour Ref Rhythm",
+        "notFound": "Aucun Ref Rhythm trouvé"
+      },
+      "created": "Un nouveau Ref Rhythm a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Ref Rhythm avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Ref Rhythm avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Ref Rhythm {{ id }} ?"
+      },
+      "detail": {
+        "title": "Ref Rhythm"
+      },
+      "code": "Code",
+      "name": "Name",
+      "valeur": "Valeur",
+      "transform": "Transform",
+      "parent": "Parent"
+    }
+  }
+}
