@@ -199,4 +199,4 @@ To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`)
 
 
 
-jenkins : EcejTm_MsewhCfNFjtDW
+jenkins : LHXeug-VebsxcSaMy8ZP
