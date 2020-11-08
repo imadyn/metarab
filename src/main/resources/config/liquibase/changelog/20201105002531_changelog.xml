@@ -1,0 +1,97 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="haoui (generated)" id="1604535950260-3">
+        <createTable tableName="ref_alphabet">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="ref_alphabetPK"/>
+            </column>
+            <column name="code" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="language" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rhythm" type="VARCHAR(3)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="haoui (generated)" id="1604535950260-4">
+        <createTable tableName="ref_bahr">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="ref_bahrPK"/>
+            </column>
+            <column name="code" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="signature" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="style" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="parent_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="haoui (generated)" id="1604535950260-5">
+        <createTable tableName="ref_rhythm">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="ref_rhythmPK"/>
+            </column>
+            <column name="code" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="transform" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valeur" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="parent_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="haoui (generated)" id="1604535950260-6">
+        <createTable tableName="type_tb">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="type_tbPK"/>
+            </column>
+            <column name="code" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ordre" type="VARCHAR(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(255)"/>
+            <column name="ref_bahr_id" type="BIGINT"/>
+            <column name="ref_rhythm_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="haoui (generated)" id="1604535950260-7">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="jhi_user_authority" constraintName="FK290okww5jujghp4el5i7mgwu0" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="haoui (generated)" id="1604535950260-8">
+        <addForeignKeyConstraint baseColumnNames="event_id" baseTableName="jhi_persistent_audit_evt_data" constraintName="FK2ehnyx2si4tjd2nt4q7y40v8m" deferrable="false" initiallyDeferred="false" referencedColumnNames="event_id" referencedTableName="jhi_persistent_audit_event" validate="true"/>
+    </changeSet>
+    <changeSet author="haoui (generated)" id="1604535950260-9">
+        <addForeignKeyConstraint baseColumnNames="authority_name" baseTableName="jhi_user_authority" constraintName="FK4psxl0jtx6nr7rhqbynr6itoc" deferrable="false" initiallyDeferred="false" referencedColumnNames="name" referencedTableName="jhi_authority" validate="true"/>
+    </changeSet>
+    <changeSet author="haoui (generated)" id="1604535950260-10">
+        <addForeignKeyConstraint baseColumnNames="ref_bahr_id" baseTableName="type_tb" constraintName="FK8ggcx69d0afrdxlrgawkp8cwn" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="ref_bahr" validate="true"/>
+    </changeSet>
+    <changeSet author="haoui (generated)" id="1604535950260-11">
+        <addForeignKeyConstraint baseColumnNames="parent_id" baseTableName="ref_rhythm" constraintName="FK8vnhwbiod336fk8411xn8akub" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="ref_rhythm" validate="true"/>
+    </changeSet>
+    <changeSet author="haoui (generated)" id="1604535950260-12">
+        <addForeignKeyConstraint baseColumnNames="ref_rhythm_id" baseTableName="type_tb" constraintName="FKaref9xiy8qkdk7dglvlnuitj9" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="ref_rhythm" validate="true"/>
+    </changeSet>
+    <changeSet author="haoui (generated)" id="1604535950260-13">
+        <addForeignKeyConstraint baseColumnNames="parent_id" baseTableName="ref_bahr" constraintName="FKfylq5x21pb25fo50ldu57u7s4" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="ref_bahr" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

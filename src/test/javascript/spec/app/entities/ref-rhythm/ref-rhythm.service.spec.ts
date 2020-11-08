@@ -1,11 +1,10 @@
 /* tslint:disable max-line-length */
 import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { HttpClient, HttpResponse } from '@angular/common/http';
-import { of } from 'rxjs';
 import { take, map } from 'rxjs/operators';
 import { RefRhythmService } from 'app/entities/ref-rhythm/ref-rhythm.service';
-import { IRefRhythm, RefRhythm, Transform } from 'app/shared/model/ref-rhythm.model';
+import { IRefRhythm, RefRhythm } from 'app/shared/model/ref-rhythm.model';
+import { Transform } from 'app/shared/enum/transform-enum';
 
 describe('Service Tests', () => {
   describe('RefRhythm Service', () => {

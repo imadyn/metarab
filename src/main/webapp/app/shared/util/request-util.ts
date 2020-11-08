@@ -16,3 +16,28 @@ export const createRequestOption = (req?: any): HttpParams => {
   }
   return options;
 };
+
+export const createRequestMapOption = (req?: any, extra?: Map<string, any>): HttpParams => {
+  let options: HttpParams = new HttpParams();
+
+  if (req) {
+    Object.keys(req).forEach(key => {
+      if (key !== 'sort') {
+        options = options.set(key, req[key]);
+      }
+    });
+
+    if (extra) {
+      for (const entry of extra.entries()) {
+        options = options.set(entry[0], entry[1]);
+      }
+    }
+
+    if (req.sort) {
+      req.sort.forEach((val: string) => {
+        options = options.append('sort', val);
+      });
+    }
+  }
+  return options;
+};

@@ -39,7 +39,7 @@ export class RefBahrUpdateComponent implements OnInit {
       this.updateForm(refBahr);
     });
     this.refBahrService
-      .query({page:0, size:100})
+      .query({ page: 0, size: 100 })
       .pipe(
         filter((mayBeOk: HttpResponse<IRefBahr[]>) => mayBeOk.ok),
         map((response: HttpResponse<IRefBahr[]>) => response.body)

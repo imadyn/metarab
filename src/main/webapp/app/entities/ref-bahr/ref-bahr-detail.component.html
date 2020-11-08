@@ -1,45 +1,131 @@
 <div class="row justify-content-center">
-    <div class="col-8">
+    <div class="col-10 card">
         <div *ngIf="refBahr">
-            <h2><span jhiTranslate="metarabApp.refBahr.detail.title">Ref Bahr</span> {{refBahr.id}}</h2>
+            <div class="card-header">
+                <h4><strong><span jhiTranslate="metarabApp.refBahr.detail.title">Ref Bahr</span> {{refBahr.name}} <span  jhiTranslate="{{'metarabApp.Style.' + refBahr.style}}">{{refBahr.style}}</span></strong></h4>
+            </div>
             <hr>
             <jhi-alert-error></jhi-alert-error>
-            <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="metarabApp.refBahr.code">Code</span></dt>
-                <dd>
-                    <span>{{refBahr.code}}</span>
-                </dd>
-                <dt><span jhiTranslate="metarabApp.refBahr.name">Name</span></dt>
-                <dd>
-                    <span>{{refBahr.name}}</span>
-                </dd>
-                <dt><span jhiTranslate="metarabApp.refBahr.signature">Signature</span></dt>
-                <dd>
-                    <span>{{refBahr.signature}}</span>
-                </dd>
-                <dt><span jhiTranslate="metarabApp.refBahr.style">Style</span></dt>
-                <dd>
-                    <span jhiTranslate="{{'metarabApp.Style.' + refBahr.style}}">{{refBahr.style}}</span>
-                </dd>
-                <dt><span jhiTranslate="metarabApp.refBahr.parent">Parent</span></dt>
-                <dd>
-                    <div *ngIf="refBahr.parentId">
-                        <a [routerLink]="['/ref-bahr', refBahr.parentId, 'view']">{{refBahr.parentId}}</a>
+            <div class="card-body">
+                <dl class="row-md jh-entity-details">
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <dt><span jhiTranslate="metarabApp.refBahr.code">Code</span></dt>
+                            <dd>
+                                <span>{{refBahr.code}}</span>
+                            </dd>
+                        </div>
+                        <div class="col-md-8">
+                            <dt><span jhiTranslate="metarabApp.refBahr.name">Name</span></dt>
+                            <dd>
+                                <span>{{refBahr.name}}</span>
+                            </dd>
+                        </div>
                     </div>
-                </dd>
-            </dl>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <dt><span jhiTranslate="metarabApp.refBahr.signature">Signature</span></dt>
+                            <dd>
+                                <span>{{darb}}/{{aroud}}</span><br>
+                                <span>{{refBahr.signature}}</span>
+                            </dd>
+                        </div>
+                        <div class="col-md-8">
+                            <dt><span jhiTranslate="metarabApp.refBahr.style">Style</span></dt>
+                            <dd>
+                                <span jhiTranslate="{{'metarabApp.Style.' + refBahr.style}}">{{refBahr.style}}</span>
+                            </dd>
+                        </div>
+                    </div>
+                    <div *ngIf="refBahr.parentId">
+                        <dt><span jhiTranslate="metarabApp.refBahr.parent">Parent</span></dt>
+                        <dd>
 
-            <button type="submit"
-                    (click)="previousState()"
-                    class="btn btn-info">
-                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
-            </button>
+                                <a [routerLink]="['/ref-bahr', refBahr.parentId, 'view']">{{refBahr.parentName}} <span  jhiTranslate="{{'metarabApp.Style.' + refBahr.parentStyle}}">{{refBahr.parentStyle}}</span></a>
 
-            <button type="button"
-                    [routerLink]="['/ref-bahr', refBahr.id, 'edit']"
-                    class="btn btn-primary">
-                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
-            </button>
+                        </dd>
+                    </div>
+                    <ngb-tabset [destroyOnHide]="false">
+                        <ngb-tab *ngIf="refBahr.derives && refBahr.derives.length > 0">
+                            <ng-template ngbTabTitle><span jhiTranslate="metarabApp.refBahr.derives">Listes des dérivés</span></ng-template>
+                            <ng-template ngbTabContent>
+                                <div class="card-body table-responsive" id="derives" *ngIf="refBahr.derives && refBahr.derives.length > 0">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                        <tr >
+                                            <th><span jhiTranslate="global.field.id">ID</span></th>
+                                            <th><span jhiTranslate="metarabApp.refBahr.code">Code</span></th>
+                                            <th><span jhiTranslate="metarabApp.refBahr.name">Name</span></th>
+                                            <th><span jhiTranslate="metarabApp.refBahr.signature">Signature</span></th>
+                                            <th><span jhiTranslate="metarabApp.refBahr.style">Style</span></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr *ngFor="let refBahr of refBahr.derives ;trackBy: trackId">
+                                            <td><a [routerLink]="['/ref-bahr', refBahr.id, 'view' ]">{{refBahr.id}}</a></td>
+                                            <td>{{refBahr.code}}</td>
+                                            <td>{{refBahr.name}}</td>
+                                            <td>{{refBahr.signature}}</td>
+                                            <td jhiTranslate="{{'metarabApp.Style.' + refBahr.style}}">{{refBahr.style}}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </ng-template>
+                        </ngb-tab>
+                        <ngb-tab *ngIf="groupByName">
+                            <ng-template ngbTabTitle><span jhiTranslate="metarabApp.refBahr.details">Détails</span></ng-template>
+                            <ng-template ngbTabContent>
+                                <ng-container *ngFor="let key of groupByName.keys()">
+                                    <div class="card-body table-responsive" id="rythmes">
+
+                                        <p>{{key}} :</p>
+
+                                        <div class="row">
+                                            <div *ngFor="let rythme of groupByName.get(key) ;" class="col-md-1 border"><strong >{{rythme.ordre}}</strong></div><br>
+                                        </div>
+                                        <div class="row">
+                                            <div *ngFor="let rythme of groupByName.get(key) ;" class="col-md-1 border"><strong >{{rythme.refRhythmName}}</strong></div><br>
+                                        </div>
+                                        <div class="row">
+                                            <div *ngFor="let rythme of groupByName.get(key) ;" class="col-md-1 border"><span jhiTranslate="{{'metarabApp.Transform.' + rythme.refRhythmTransform}}">{{rythme.refRhythmTransform}}</span></div><br>
+                                        </div>
+                                        <div class="row">
+                                            <div *ngFor="let rythme of groupByName.get(key) ;" class="col-md-1 border"><span >{{rythme.refRhythmValeur}}</span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div *ngFor="let rythme of groupByName.get(key) ;" class="col-md-1 border"><span jhiTranslate="{{'metarabApp.Type.' + rythme.type}}">{{rythme.type}}</span></div>
+                                        </div>
+
+                                    </div>
+                                </ng-container>
+                                <div [hidden]="!groupByName">
+                                    <div class="row justify-content-center">
+                                        <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+                                    </div>
+                                    <div class="row justify-content-center">
+                                        <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </ngb-tab>
+                    </ngb-tabset>
+                </dl>
+            </div>
+            <div class="card-footer text-center">
+                <button type="submit"
+                        (click)="previousState()"
+                        class="btn btn-info">
+                    <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+                </button>
+
+                <button type="button"
+                        [routerLink]="['/ref-bahr', refBahr.id, 'edit']"
+                        class="btn btn-primary">
+                    <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+                </button>
+            </div>
         </div>
     </div>
 </div>

@@ -1,13 +1,25 @@
 package ac.fidoteam.alkhalil.domain;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
 import org.springframework.data.elasticsearch.annotations.FieldType;
-import java.io.Serializable;
 
 import ac.fidoteam.alkhalil.domain.enumeration.Style;
 
@@ -28,8 +40,8 @@ public class RefBahr implements Serializable {
     private Long id;
 
     @NotNull
-    @Size(max = 32)
-    @Column(name = "code", length = 32, nullable = false)
+    @Size(max = 64)
+    @Column(name = "code", length = 64, nullable = false)
     private String code;
 
     @NotNull
@@ -38,8 +50,8 @@ public class RefBahr implements Serializable {
     private String name;
 
     @NotNull
-    @Size(max = 10)
-    @Column(name = "signature", length = 10, nullable = false)
+    @Size(max = 64)
+    @Column(name = "signature", length = 64, nullable = false)
     private String signature;
 
     @NotNull
@@ -47,9 +59,20 @@ public class RefBahr implements Serializable {
     @Column(name = "style", nullable = false)
     private Style style;
 
-    @ManyToOne
-    @JsonIgnoreProperties("refBahrs")
+    @ManyToOne(fetch = FetchType.LAZY)
     private RefBahr parent;
+
+
+	/*
+	 * @OneToMany(mappedBy = "refBahr")
+	 * 
+	 * @Cache(usage = CacheConcurrencyStrategy.READ_WRITE) private Set<TypeTB>
+	 * rythmes = new HashSet<>();
+	 */
+
+    @OneToMany(mappedBy = "parent")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    private Set<RefBahr> derives = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -124,6 +147,33 @@ public class RefBahr implements Serializable {
     public void setParent(RefBahr refBahr) {
         this.parent = refBahr;
     }
+
+
+    public Set<RefBahr> getDerives() {
+        return derives;
+    }
+
+    public RefBahr derives(Set<RefBahr> derives) {
+        this.derives = derives;
+        return this;
+    }
+
+    public RefBahr addDerive(RefBahr derive) {
+        this.derives.add(derive);
+        derive.setParent(this);
+        return this;
+    }
+
+    public RefBahr removeDerive(RefBahr derive) {
+        this.derives.remove(derive);
+        derive.setParent(null);
+        return this;
+    }
+
+    public void setDerives(Set<RefBahr> derives) {
+        this.derives = derives;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override

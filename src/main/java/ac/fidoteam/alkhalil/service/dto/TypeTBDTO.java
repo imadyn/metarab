@@ -1,7 +1,11 @@
 package ac.fidoteam.alkhalil.service.dto;
-import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import ac.fidoteam.alkhalil.domain.enumeration.Transform;
 import ac.fidoteam.alkhalil.domain.enumeration.Type;
 
 /**
@@ -25,6 +29,12 @@ public class TypeTBDTO implements Serializable {
     private Long refBahrId;
 
     private Long refRhythmId;
+
+    private String refRhythmName;
+
+    private String refRhythmValeur;
+
+    private Transform refRhythmTransform;
 
     public Long getId() {
         return id;
@@ -74,7 +84,33 @@ public class TypeTBDTO implements Serializable {
         this.refRhythmId = refRhythmId;
     }
 
-    @Override
+
+    public String getRefRhythmName() {
+        return refRhythmName;
+    }
+
+    public void setRefRhythmName(String refRhythmName) {
+        this.refRhythmName = refRhythmName;
+    }
+
+
+    public String getRefRhythmValeur() {
+        return refRhythmValeur;
+    }
+
+    public void setRefRhythmValeur(String refRhythmValeur) {
+        this.refRhythmValeur = refRhythmValeur;
+    }
+
+    public Transform getRefRhythmTransform() {
+		return refRhythmTransform;
+	}
+
+	public void setRefRhythmTransform(Transform refRhythmTransform) {
+		this.refRhythmTransform = refRhythmTransform;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

@@ -21,7 +21,9 @@
       "name": "Name",
       "signature": "Signature",
       "style": "Style",
-      "parent": "Parent"
+      "parent": "Parent",
+      "derives": "Derives List",
+      "details": "Details"
     }
   }
 }

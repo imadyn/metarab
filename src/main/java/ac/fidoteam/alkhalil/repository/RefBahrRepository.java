@@ -1,8 +1,10 @@
 package ac.fidoteam.alkhalil.repository;
 
-import ac.fidoteam.alkhalil.domain.RefBahr;
-import org.springframework.data.jpa.repository.*;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
+
+import ac.fidoteam.alkhalil.domain.RefBahr;
 
 
 /**

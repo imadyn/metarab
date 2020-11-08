@@ -39,7 +39,7 @@ export class RefRhythmUpdateComponent implements OnInit {
       this.updateForm(refRhythm);
     });
     this.refRhythmService
-      .query({page:0, size:100})
+      .query({ page: 0, size: 100 })
       .pipe(
         filter((mayBeOk: HttpResponse<IRefRhythm[]>) => mayBeOk.ok),
         map((response: HttpResponse<IRefRhythm[]>) => response.body)

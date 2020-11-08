@@ -1,3 +1,4 @@
+import { ITypeTB } from './type-tb.model';
 export const enum Style {
   TAME = 'TAME',
   WAFI = 'WAFI',
@@ -13,6 +14,10 @@ export interface IRefBahr {
   signature?: string;
   style?: Style;
   parentId?: number;
+  parentName?: string;
+  parentStyle?: Style;
+  derives?: IRefBahr[];
+  rythmes?: ITypeTB[];
 }
 
 export class RefBahr implements IRefBahr {
@@ -22,6 +27,10 @@ export class RefBahr implements IRefBahr {
     public name?: string,
     public signature?: string,
     public style?: Style,
-    public parentId?: number
+    public parentId?: number,
+    public parentName?: string,
+    public derives?: IRefBahr[],
+    public rythmes?: ITypeTB[],
+    public parentStyle?: Style
   ) {}
 }

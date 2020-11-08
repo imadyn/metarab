@@ -19,9 +19,11 @@
       },
       "code": "رمز",
       "name": "اسم البحر",
-      "signature": "Signature",
+      "signature": "العروض/الضرب",
       "style": "نوع",
-      "parent": "اصل البحر"
+      "parent": "اصل البحر",
+      "derives": "فروع البحر",
+      "details": "تفعيلات البحر"
     }
   }
 }

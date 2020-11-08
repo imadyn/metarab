@@ -1,17 +1,17 @@
 package ac.fidoteam.alkhalil.service.dto;
 
-import ac.fidoteam.alkhalil.config.Constants;
-
-import ac.fidoteam.alkhalil.domain.Authority;
-import ac.fidoteam.alkhalil.domain.User;
-
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-
-import javax.validation.constraints.*;
 import java.time.Instant;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import ac.fidoteam.alkhalil.config.Constants;
+import ac.fidoteam.alkhalil.domain.Authority;
+import ac.fidoteam.alkhalil.domain.User;
 
 /**
  * A DTO representing a user, with his authorities.

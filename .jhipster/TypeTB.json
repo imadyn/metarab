@@ -8,7 +8,7 @@
                 "required",
                 "maxlength"
             ],
-            "fieldValidateRulesMaxlength": 32
+            "fieldValidateRulesMaxlength": 64
         },
         {
             "fieldName": "ordre",

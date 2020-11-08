@@ -1,6 +1,23 @@
 package ac.fidoteam.alkhalil.web.rest;
 
 
+import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
 import ac.fidoteam.alkhalil.domain.User;
 import ac.fidoteam.alkhalil.repository.UserRepository;
 import ac.fidoteam.alkhalil.security.SecurityUtils;
@@ -8,19 +25,12 @@ import ac.fidoteam.alkhalil.service.MailService;
 import ac.fidoteam.alkhalil.service.UserService;
 import ac.fidoteam.alkhalil.service.dto.PasswordChangeDTO;
 import ac.fidoteam.alkhalil.service.dto.UserDTO;
-import ac.fidoteam.alkhalil.web.rest.errors.*;
+import ac.fidoteam.alkhalil.web.rest.errors.EmailAlreadyUsedException;
+import ac.fidoteam.alkhalil.web.rest.errors.EmailNotFoundException;
+import ac.fidoteam.alkhalil.web.rest.errors.InvalidPasswordException;
+import ac.fidoteam.alkhalil.web.rest.errors.LoginAlreadyUsedException;
 import ac.fidoteam.alkhalil.web.rest.vm.KeyAndPasswordVM;
 import ac.fidoteam.alkhalil.web.rest.vm.ManagedUserVM;
-
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-import java.util.*;
 
 /**
  * REST controller for managing the current user's account.

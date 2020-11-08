@@ -47,14 +47,14 @@ export class TypeTBUpdateComponent implements OnInit {
       this.updateForm(typeTB);
     });
     this.refBahrService
-      .query({page:0, size:100})
+      .query({ page: 0, size: 100 })
       .pipe(
         filter((mayBeOk: HttpResponse<IRefBahr[]>) => mayBeOk.ok),
         map((response: HttpResponse<IRefBahr[]>) => response.body)
       )
       .subscribe((res: IRefBahr[]) => (this.refbahrs = res), (res: HttpErrorResponse) => this.onError(res.message));
     this.refRhythmService
-      .query({page:0, size:100})
+      .query({ page: 0, size: 100 })
       .pipe(
         filter((mayBeOk: HttpResponse<IRefRhythm[]>) => mayBeOk.ok),
         map((response: HttpResponse<IRefRhythm[]>) => response.body)

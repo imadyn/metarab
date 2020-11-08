@@ -1,10 +1,6 @@
 package ac.fidoteam.alkhalil.web.rest;
 
-import ac.fidoteam.alkhalil.security.AuthoritiesConstants;
-import ac.fidoteam.alkhalil.security.SecurityUtils;
-import ac.fidoteam.alkhalil.service.ElasticsearchIndexService;
-import io.github.jhipster.web.util.HeaderUtil;
-import io.micrometer.core.annotation.Timed;
+import java.net.URISyntaxException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +10,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.net.URISyntaxException;
+import ac.fidoteam.alkhalil.security.AuthoritiesConstants;
+import ac.fidoteam.alkhalil.security.SecurityUtils;
+import ac.fidoteam.alkhalil.service.ElasticsearchIndexService;
+import io.github.jhipster.web.util.HeaderUtil;
+import io.micrometer.core.annotation.Timed;
 
 /**
  * REST controller for managing Elasticsearch index.

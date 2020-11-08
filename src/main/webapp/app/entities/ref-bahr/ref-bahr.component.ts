@@ -16,6 +16,7 @@ import { RefBahrService } from './ref-bahr.service';
   templateUrl: './ref-bahr.component.html'
 })
 export class RefBahrComponent implements OnInit, OnDestroy {
+  criteres?: Map<string, any>;
   currentAccount: any;
   refBahrs: IRefBahr[];
   error: any;
@@ -52,7 +53,7 @@ export class RefBahrComponent implements OnInit, OnDestroy {
   }
 
   loadAll() {
-    if (this.currentSearch) {
+    /* if (this.currentSearch && this.currentSearch !== '') {
       this.refBahrService
         .search({
           page: this.page - 1,
@@ -75,7 +76,9 @@ export class RefBahrComponent implements OnInit, OnDestroy {
       .subscribe(
         (res: HttpResponse<IRefBahr[]>) => this.paginateRefBahrs(res.body, res.headers),
         (res: HttpErrorResponse) => this.onError(res.message)
-      );
+      ); */
+
+    this.searchAdvanced();
   }
 
   loadPage(page: number) {
@@ -127,8 +130,36 @@ export class RefBahrComponent implements OnInit, OnDestroy {
     this.loadAll();
   }
 
+  searchAdvanced(): void {
+    this.criteres = new Map();
+    this.criteres.set('isRoot', true);
+    this.loadPageAdvanced(1);
+  }
+
+  loadPageAdvanced(page?: number): void {
+    const pageToLoad: number = page || this.page;
+    if (!this.criteres) return;
+
+    this.refBahrService
+      .searchAdvanced(
+        {
+          page: pageToLoad - 1,
+          size: this.itemsPerPage,
+          sort: this.sort()
+        },
+        this.criteres
+      )
+      .subscribe(
+        (res: HttpResponse<IRefBahr[]>) => this.paginateRefBahrs(res.body, res.headers),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
+  }
+
   ngOnInit() {
-    this.loadAll();
+    //this.loadAll();
+
+    this.searchAdvanced();
+
     this.accountService.identity().then(account => {
       this.currentAccount = account;
     });

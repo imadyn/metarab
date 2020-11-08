@@ -1,3 +1,5 @@
+import { Transform } from '../enum/transform-enum';
+
 export const enum Type {
   HACHW = 'HACHW',
   AROUD = 'AROUD',
@@ -13,6 +15,9 @@ export interface ITypeTB {
   type?: Type;
   refBahrId?: number;
   refRhythmId?: number;
+  refRhythmName?: string;
+  refRhythmValeur?: string;
+  refRhythmTransform?: Transform;
 }
 
 export class TypeTB implements ITypeTB {
@@ -22,6 +27,9 @@ export class TypeTB implements ITypeTB {
     public ordre?: string,
     public type?: Type,
     public refBahrId?: number,
-    public refRhythmId?: number
+    public refRhythmId?: number,
+    public refRhythmName?: string,
+    public refRhythmValeur?: string,
+    public refRhythmTransform?: Transform
   ) {}
 }

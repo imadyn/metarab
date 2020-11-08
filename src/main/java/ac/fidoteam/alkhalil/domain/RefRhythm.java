@@ -1,13 +1,21 @@
 package ac.fidoteam.alkhalil.domain;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
 import org.springframework.data.elasticsearch.annotations.FieldType;
-import java.io.Serializable;
 
 import ac.fidoteam.alkhalil.domain.enumeration.Transform;
 
@@ -28,8 +36,8 @@ public class RefRhythm implements Serializable {
     private Long id;
 
     @NotNull
-    @Size(max = 32)
-    @Column(name = "code", length = 32, nullable = false)
+    @Size(max = 64)
+    @Column(name = "code", length = 64, nullable = false)
     private String code;
 
     @NotNull
@@ -48,7 +56,6 @@ public class RefRhythm implements Serializable {
     private Transform transform;
 
     @ManyToOne
-    @JsonIgnoreProperties("refRhythms")
     private RefRhythm parent;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

@@ -1,6 +1,7 @@
 package ac.fidoteam.alkhalil.service;
 
 import ac.fidoteam.alkhalil.service.dto.RefBahrDTO;
+import ac.fidoteam.alkhalil.service.dto.RefBahrSearchCriteria;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -53,4 +54,13 @@ public interface RefBahrService {
      * @return the list of entities.
      */
     Page<RefBahrDTO> search(String query, Pageable pageable);
+
+	/**
+	 * Search for the refBahr corresponding to the query.
+	 *
+	 * @param query the query of the search.
+	 * @param pageable the pagination information.
+	 * @return the list of entities.
+	 */
+	Page<RefBahrDTO> searchAdvanced(RefBahrSearchCriteria criteria, Pageable page);
 }

@@ -1,13 +1,22 @@
 package ac.fidoteam.alkhalil.domain;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
+import java.io.Serializable;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.data.elasticsearch.annotations.FieldType;
-import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import ac.fidoteam.alkhalil.domain.enumeration.Type;
 
@@ -16,7 +25,6 @@ import ac.fidoteam.alkhalil.domain.enumeration.Type;
  */
 @Entity
 @Table(name = "type_tb")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @org.springframework.data.elasticsearch.annotations.Document(indexName = "typetb")
 public class TypeTB implements Serializable {
 
@@ -41,11 +49,11 @@ public class TypeTB implements Serializable {
     @Column(name = "type")
     private Type type;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties("typeTBS")
     private RefBahr refBahr;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties("typeTBS")
     private RefRhythm refRhythm;
 

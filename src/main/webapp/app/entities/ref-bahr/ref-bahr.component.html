@@ -31,13 +31,13 @@
     <div class="table-responsive" *ngIf="refBahrs?.length > 0">
         <table class="table table-striped">
             <thead>
-            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="code"><span jhiTranslate="metarabApp.refBahr.code">Code</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="name"><span jhiTranslate="metarabApp.refBahr.name">Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="signature"><span jhiTranslate="metarabApp.refBahr.signature">Signature</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="style"><span jhiTranslate="metarabApp.refBahr.style">Style</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="parentId"><span jhiTranslate="metarabApp.refBahr.parent">Parent</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <tr >
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="metarabApp.refBahr.code">Code</span></th>
+            <th><span jhiTranslate="metarabApp.refBahr.name">Name</span></th>
+            <th><span jhiTranslate="metarabApp.refBahr.signature">Signature</span></th>
+            <th><span jhiTranslate="metarabApp.refBahr.style">Style</span></th>
+            <th><span jhiTranslate="metarabApp.refBahr.parent">Parent</span></th>
             <th></th>
             </tr>
             </thead>
@@ -50,7 +50,7 @@
                 <td jhiTranslate="{{'metarabApp.Style.' + refBahr.style}}">{{refBahr.style}}</td>
                 <td>
                     <div *ngIf="refBahr.parentId">
-                        <a [routerLink]="['/ref-bahr', refBahr.parentId , 'view' ]" >{{refBahr.parentId}}</a>
+                        <a [routerLink]="['/ref-bahr', refBahr.parentId , 'view' ]" >{{refBahr.parentName}} <span  jhiTranslate="{{'metarabApp.Style.' + refBahr.parentStyle}}">{{refBahr.parentStyle}}</span></a>
                     </div>
                 </td>
                 <td class="text-right">

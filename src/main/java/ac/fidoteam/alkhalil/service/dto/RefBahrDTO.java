@@ -1,18 +1,24 @@
 package ac.fidoteam.alkhalil.service.dto;
-import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import ac.fidoteam.alkhalil.domain.enumeration.Style;
 
 /**
  * A DTO for the {@link ac.fidoteam.alkhalil.domain.RefBahr} entity.
  */
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "refbahr")
 public class RefBahrDTO implements Serializable {
 
     private Long id;
 
     @NotNull
-    @Size(max = 32)
+    @Size(max = 64)
     private String code;
 
     @NotNull
@@ -20,7 +26,7 @@ public class RefBahrDTO implements Serializable {
     private String name;
 
     @NotNull
-    @Size(max = 10)
+    @Size(max = 64)
     private String signature;
 
     @NotNull
@@ -28,6 +34,13 @@ public class RefBahrDTO implements Serializable {
 
 
     private Long parentId;
+
+    private String parentName;
+
+    private Style parentStyle;
+
+    private Set<RefBahrDTO> derives = new HashSet<>();
+
 
     public Long getId() {
         return id;
@@ -61,6 +74,14 @@ public class RefBahrDTO implements Serializable {
         this.signature = signature;
     }
 
+    public String getParentName() {
+        return parentName;
+    }
+
+    public void setParentName(String parentName) {
+        this.parentName = parentName;
+    }
+
     public Style getStyle() {
         return style;
     }
@@ -69,12 +90,29 @@ public class RefBahrDTO implements Serializable {
         this.style = style;
     }
 
+    public Style getParentStyle() {
+        return parentStyle;
+    }
+
+    public void setParentStyle(Style parentStyle) {
+        this.parentStyle = parentStyle;
+    }
+
+
     public Long getParentId() {
         return parentId;
     }
 
     public void setParentId(Long refBahrId) {
         this.parentId = refBahrId;
+    }
+
+    public Set<RefBahrDTO> getDerives() {
+        return derives;
+    }
+
+    public void setDerives(Set<RefBahrDTO> derives) {
+        this.derives = derives;
     }
 
     @Override
@@ -107,6 +145,8 @@ public class RefBahrDTO implements Serializable {
             ", signature='" + getSignature() + "'" +
             ", style='" + getStyle() + "'" +
             ", parent=" + getParentId() +
+            ", parentName=" + getParentName() +
+            ", parentStyle=" + getParentStyle() +
             "}";
     }
 }

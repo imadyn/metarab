@@ -12,18 +12,17 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Collectors;
 
+import javax.persistence.EntityManager;
 import javax.persistence.ManyToMany;
+import javax.persistence.PersistenceContext;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
-import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.scheduling.annotation.Async;
@@ -79,6 +78,9 @@ public class ElasticsearchIndexService {
     
     @Autowired
     private final ElasticsearchOperations elasticsearchTemplate;
+    
+    @PersistenceContext
+    private EntityManager em;
 
     public ElasticsearchIndexService(
         UserRepository userRepository,
@@ -168,6 +170,7 @@ public class ElasticsearchIndexService {
                     return result;
                 });
                 elasticsearchRepository.saveAll(results.getContent());
+                em.clear();
             }
         }
         log.info("Elasticsearch: Indexed all rows for {}", entityClass.getSimpleName());

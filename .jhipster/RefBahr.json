@@ -8,7 +8,7 @@
                 "required",
                 "maxlength"
             ],
-            "fieldValidateRulesMaxlength": 32
+            "fieldValidateRulesMaxlength": 64
         },
         {
             "fieldName": "name",
@@ -26,7 +26,7 @@
                 "required",
                 "maxlength"
             ],
-            "fieldValidateRulesMaxlength": 10
+            "fieldValidateRulesMaxlength": 64
         },
         {
             "fieldName": "style",

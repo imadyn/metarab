@@ -4,32 +4,19 @@ import { RouterModule } from '@angular/router';
 import { MetarabSharedModule } from '../../shared';
 
 import {
-    ElasticsearchReindexComponent,
-    ElasticsearchReindexModalComponent,
-    ElasticsearchReindexService,
-    elasticsearchReindexRoute
+  ElasticsearchReindexComponent,
+  ElasticsearchReindexModalComponent,
+  ElasticsearchReindexService,
+  elasticsearchReindexRoute
 } from './';
 
-const ADMIN_ROUTES = [
-    elasticsearchReindexRoute
-];
+const ADMIN_ROUTES = [elasticsearchReindexRoute];
 
 @NgModule({
-    imports: [
-        MetarabSharedModule,
-        RouterModule.forRoot(ADMIN_ROUTES, { useHash: true })
-    ],
-    declarations: [
-        ElasticsearchReindexComponent,
-        ElasticsearchReindexModalComponent
-    ],
-    entryComponents: [
-        ElasticsearchReindexModalComponent
-    ],
-    providers: [
-        ElasticsearchReindexService
-    ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  imports: [MetarabSharedModule, RouterModule.forChild(ADMIN_ROUTES)],
+  declarations: [ElasticsearchReindexComponent, ElasticsearchReindexModalComponent],
+  entryComponents: [ElasticsearchReindexModalComponent],
+  providers: [ElasticsearchReindexService],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-
 export class MetarabElasticsearchReindexModule {}

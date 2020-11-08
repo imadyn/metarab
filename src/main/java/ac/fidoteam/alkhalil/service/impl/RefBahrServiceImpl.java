@@ -1,22 +1,27 @@
 package ac.fidoteam.alkhalil.service.impl;
 
-import ac.fidoteam.alkhalil.service.RefBahrService;
-import ac.fidoteam.alkhalil.domain.RefBahr;
-import ac.fidoteam.alkhalil.repository.RefBahrRepository;
-import ac.fidoteam.alkhalil.repository.search.RefBahrSearchRepository;
-import ac.fidoteam.alkhalil.service.dto.RefBahrDTO;
-import ac.fidoteam.alkhalil.service.mapper.RefBahrMapper;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
+
+import java.util.Optional;
+
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import ac.fidoteam.alkhalil.domain.RefBahr;
+import ac.fidoteam.alkhalil.repository.RefBahrRepository;
+import ac.fidoteam.alkhalil.repository.search.RefBahrSearchRepository;
+import ac.fidoteam.alkhalil.repository.search.RefBahrSearchSpecification;
+import ac.fidoteam.alkhalil.service.RefBahrService;
+import ac.fidoteam.alkhalil.service.dto.RefBahrDTO;
+import ac.fidoteam.alkhalil.service.dto.RefBahrSearchCriteria;
+import ac.fidoteam.alkhalil.service.mapper.RefBahrMapper;
 
 /**
  * Service Implementation for managing {@link RefBahr}.
@@ -109,5 +114,35 @@ public class RefBahrServiceImpl implements RefBahrService {
         log.debug("Request to search for a page of RefBahrs for query {}", query);
         return refBahrSearchRepository.search(queryStringQuery(query), pageable)
             .map(refBahrMapper::toDto);
+    }
+    
+    /**
+     * Search for the beneficiaire corresponding to the query.
+     *
+     * @param query the query of the search.
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public Page<RefBahrDTO> searchAdvanced(RefBahrSearchCriteria criteria, Pageable page) {
+    log.debug("find by criteria : {}, page: {}", criteria, page);
+        return refBahrSearchRepository.search(createSpecificationSearchEngineAnd(criteria), page)
+            .map(refBahrMapper::toDto);
+    }
+    
+    /**
+     * Function to convert {@link BeneficiaireCriteria} to a {@link Specification}
+     * @param criteria The object which holds all the filters, which the entities should match.
+     * @return the matching {@link Specification} of the entity.
+     */
+    private QueryBuilder createSpecificationSearchEngineAnd(RefBahrSearchCriteria criteria) {
+        BoolQueryBuilder qb = QueryBuilders.boolQuery();
+        if (criteria != null) {
+            if (criteria.getIsRoot() != null && criteria.getIsRoot().booleanValue()) {
+                qb.must( RefBahrSearchSpecification.isRootParent(Boolean.TRUE));
+            }
+        }
+        return qb.hasClauses() ? qb : null;
     }
 }
