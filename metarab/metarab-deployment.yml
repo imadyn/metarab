@@ -34,7 +34,7 @@ spec:
               done
       containers:
         - name: metarab-app
-          image: metarab/metarab
+          image: metarab/metarab:v1.0
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: prod
