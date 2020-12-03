@@ -28,9 +28,7 @@
     "clientFramework": "angularX",
     "clientTheme": "none",
     "clientThemeVariant": "",
-    "testFrameworks": [
-      "protractor"
-    ],
+    "testFrameworks": ["protractor"],
     "jhiPrefix": "jhi",
     "entitySuffix": "",
     "dtoSuffix": "DTO",
@@ -82,12 +80,15 @@
     ],
     "enableTranslation": true,
     "nativeLanguage": "ar-ly",
-    "languages": [
-      "ar-ly",
-      "en",
-      "fr",
-      "es"
-    ],
-    "blueprints": []
+    "languages": ["ar-ly", "en", "fr", "es"],
+    "blueprints": [],
+    "appsFolders": ["metarab"],
+    "directoryPath": "../",
+    "dockerRepositoryName": "metarab",
+    "dockerPushCommand": "docker push",
+    "kubernetesNamespace": "metarab",
+    "kubernetesServiceType": "LoadBalancer",
+    "monitoring": "no",
+    "istio": false
   }
 }
