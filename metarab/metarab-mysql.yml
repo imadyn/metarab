@@ -14,11 +14,18 @@ spec:
         app: metarab-mysql
     spec:
       volumes:
-        - name: data
-          emptyDir: {}
+        - name: pvc-data-db
+          persistentVolumeClaim:
+            claimName: pvc-data-db
+      initContainers:
+        - name: remove-lostfound
+          image: busybox
+          command: ["rm", "-rf", "/var/lib/mysql/*"]
+          securityContext:
+            privileged: true
       containers:
         - name: mysql
-          image: mysql:8.0.17
+          image: mariadb:10.5
           env:
             - name: MYSQL_USER
               value: root
@@ -27,6 +34,7 @@ spec:
             - name: MYSQL_DATABASE
               value: metarab
           args:
+            - --ignore-db-dir=lost+found
             - --lower_case_table_names=1
             - --skip-ssl
             - --character_set_server=utf8mb4
@@ -34,8 +42,15 @@ spec:
           ports:
             - containerPort: 3306
           volumeMounts:
-            - name: data
-              mountPath: /var/lib/mysql/
+            - name: pvc-data-db
+              mountPath: /var/lib/mysql/data
+          resources:
+            requests:
+              memory: '1Gi'
+              cpu: '1'
+            limits:
+              memory: '2Gi'
+              cpu: '2'
 ---
 apiVersion: v1
 kind: Service

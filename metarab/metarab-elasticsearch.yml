@@ -14,8 +14,9 @@ spec:
         app: metarab-elasticsearch
     spec:
       volumes:
-        - name: data
-          emptyDir: {}
+        - name: pvc-data-es
+          persistentVolumeClaim:
+            claimName: pvc-data-es
       initContainers:
         - name: init-sysctl
           image: busybox
@@ -36,8 +37,15 @@ spec:
               name: transport
               protocol: TCP
           volumeMounts:
-            - name: data
+            - name: pvc-data-es
               mountPath: /usr/share/elasticsearch/data/
+          resources:
+            requests:
+              memory: '1Gi'
+              cpu: '1'
+            limits:
+              memory: '2Gi'
+              cpu: '2'
 ---
 apiVersion: v1
 kind: Service

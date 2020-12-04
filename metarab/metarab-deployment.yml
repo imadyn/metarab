@@ -34,7 +34,7 @@ spec:
               done
       containers:
         - name: metarab-app
-          image: metarab/metarab:v1.0
+          image: metarab/metarab:v1.1
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: prod
@@ -48,7 +48,7 @@ spec:
             - name: EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE
               value: http://admin:${jhipster.registry.password}@jhipster-registry.metarab.svc.cluster.local:8761/eureka/
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:mysql://metarab-mysql.metarab.svc.cluster.local:3306/metarab?useUnicode=true&characterEncoding=utf8&useSSL=false
+              value: jdbc:mysql://metarab-mysql.metarab.svc.cluster.local:3306/metarab?useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true&useSSL=false
             - name: SPRING_DATA_JEST_URI
               value: http://metarab-elasticsearch.metarab.svc.cluster.local:9200
             - name: SPRING_ELASTICSEARCH_REST_URIS
@@ -57,8 +57,8 @@ spec:
               value: ' -Xmx256m -Xms256m'
           resources:
             requests:
-              memory: '512Mi'
-              cpu: '500m'
+              memory: '256Mi'
+              cpu: '300m'
             limits:
               memory: '1Gi'
               cpu: '1'
@@ -69,8 +69,8 @@ spec:
             httpGet:
               path: /management/health
               port: http
-            initialDelaySeconds: 20
-            periodSeconds: 15
+            initialDelaySeconds: 40
+            periodSeconds: 20
             failureThreshold: 6
           livenessProbe:
             httpGet:

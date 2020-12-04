@@ -1,0 +1,61 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-data-db
+  labels:
+    app: pv-metarab-mysql
+spec:
+  storageClassName: standard
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/c/Users/haoui/data"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-data-es
+  labels:
+    app: pv-metarab-elasticsearch
+spec:
+  storageClassName: standard
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/c/Users/haoui/dataes"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-data-db
+  namespace: metarab
+spec:
+  storageClassName: standard
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+  selector:
+    matchLabels:
+      app: pv-metarab-mysql
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-data-es
+  namespace: metarab
+spec:
+  storageClassName: standard
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+  selector:
+    matchLabels:
+      app: pv-metarab-elasticsearch
