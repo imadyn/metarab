@@ -1,11 +1,9 @@
 /* tslint:disable max-line-length */
-import { TestBed, getTestBed } from '@angular/core/testing';
+import { getTestBed, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { HttpClient, HttpResponse } from '@angular/common/http';
-import { of } from 'rxjs';
-import { take, map } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 import { TypeTBService } from 'app/entities/type-tb/type-tb.service';
-import { ITypeTB, TypeTB, Type } from 'app/shared/model/type-tb.model';
+import { ITypeTB, Type, TypeTB } from 'app/shared/model/type-tb.model';
 
 describe('Service Tests', () => {
   describe('TypeTB Service', () => {

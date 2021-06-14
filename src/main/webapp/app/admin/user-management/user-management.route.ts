@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate } from '@angular/router';
-import { JhiPaginationUtil, JhiResolvePagingParams } from 'ng-jhipster';
+import { ActivatedRouteSnapshot, CanActivate, Resolve, RouterStateSnapshot, Routes } from '@angular/router';
+import { JhiResolvePagingParams } from 'ng-jhipster';
 
 import { AccountService, User, UserService } from 'app/core';
 import { UserMgmtComponent } from './user-management.component';
@@ -9,7 +9,8 @@ import { UserMgmtUpdateComponent } from './user-management-update.component';
 
 @Injectable({ providedIn: 'root' })
 export class UserResolve implements CanActivate {
-  constructor(private accountService: AccountService) {}
+  constructor(private accountService: AccountService) {
+  }
 
   canActivate() {
     return this.accountService.identity().then(account => this.accountService.hasAnyAuthority(['ROLE_ADMIN']));

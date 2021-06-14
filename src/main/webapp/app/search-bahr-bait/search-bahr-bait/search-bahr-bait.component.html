@@ -1,0 +1,72 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="searchForm" role="form" novalidate (ngSubmit)="loadAll()" [formGroup]="searchForm">
+            <h2 id="jhi-ref-alphabet-heading" jhiTranslate="metarabApp.bahrCombine.home.title">Create or edit a Ref
+                Alphabet</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="metarabApp.bahrCombine.partie1" for="field_partie1">Partie
+                        1</label>
+                    <input type="text" class="form-control" name="partie1" id="field_partie1"
+                           formControlName="partie1"/>
+                    <div
+                        *ngIf="searchForm.get('partie1').invalid && (searchForm.get('partie1').dirty || searchForm.get('partie1').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="searchForm.get('partie1').errors.required"
+                               jhiTranslate="entity.validation.required">
+                            This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="searchForm.get('partie1').errors.maxlength"
+                               jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 32 }">
+                            This field cannot be longer than 32 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="metarabApp.bahrCombine.partie2" for="field_partie2">Partie
+                        2</label>
+                    <input type="text" class="form-control" name="partie2" id="field_partie2"
+                           formControlName="partie2"/>
+                    <div
+                        *ngIf="searchForm.get('partie2').invalid && (searchForm.get('partie2').dirty || searchForm.get('partie2').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="searchForm.get('partie2').errors.required"
+                               jhiTranslate="entity.validation.required">
+                            This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="searchForm.get('partie2').errors.maxlength"
+                               jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 64 }">
+                            This field cannot be longer than 64 characters.
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button type="submit" id="search-entity" [disabled]="searchForm.invalid || isSearching"
+                        class="btn btn-primary">
+                    <fa-icon [icon]="'search'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.search">Search</span>
+                </button>
+            </div>
+        </form>
+        <div class="alert alert-warning" *ngIf="codeBahrs?.length === 0">
+            <span jhiTranslate="audits.notFound">Aucun code bahr trouvée</span>
+        </div>
+        <div class="table-responsive" *ngIf="codeBahrs?.length > 0">
+            <table class="table table-sm table-striped">
+                <thead>
+                <tr>
+                    <th><span jhiTranslate="audits.table.header.date">Bahr</span></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let c of codeBahrs">
+                    <td><span>{{c}}</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

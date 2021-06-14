@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
-import { JhiPaginationUtil, JhiResolvePagingParams } from 'ng-jhipster';
+import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot, Routes } from '@angular/router';
+import { JhiResolvePagingParams } from 'ng-jhipster';
 import { UserRouteAccessService } from 'app/core';
 import { Observable, of } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
-import { RefRhythm } from 'app/shared/model/ref-rhythm.model';
+import { IRefRhythm, RefRhythm } from 'app/shared/model/ref-rhythm.model';
 import { RefRhythmService } from './ref-rhythm.service';
 import { RefRhythmComponent } from './ref-rhythm.component';
 import { RefRhythmDetailComponent } from './ref-rhythm-detail.component';
 import { RefRhythmUpdateComponent } from './ref-rhythm-update.component';
 import { RefRhythmDeletePopupComponent } from './ref-rhythm-delete-dialog.component';
-import { IRefRhythm } from 'app/shared/model/ref-rhythm.model';
 
 @Injectable({ providedIn: 'root' })
 export class RefRhythmResolve implements Resolve<IRefRhythm> {

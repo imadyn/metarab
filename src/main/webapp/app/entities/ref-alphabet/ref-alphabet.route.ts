@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
-import { JhiPaginationUtil, JhiResolvePagingParams } from 'ng-jhipster';
+import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot, Routes } from '@angular/router';
+import { JhiResolvePagingParams } from 'ng-jhipster';
 import { UserRouteAccessService } from 'app/core';
 import { Observable, of } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
-import { RefAlphabet } from 'app/shared/model/ref-alphabet.model';
+import { IRefAlphabet, RefAlphabet } from 'app/shared/model/ref-alphabet.model';
 import { RefAlphabetService } from './ref-alphabet.service';
 import { RefAlphabetComponent } from './ref-alphabet.component';
 import { RefAlphabetDetailComponent } from './ref-alphabet-detail.component';
 import { RefAlphabetUpdateComponent } from './ref-alphabet-update.component';
 import { RefAlphabetDeletePopupComponent } from './ref-alphabet-delete-dialog.component';
-import { IRefAlphabet } from 'app/shared/model/ref-alphabet.model';
 
 @Injectable({ providedIn: 'root' })
 export class RefAlphabetResolve implements Resolve<IRefAlphabet> {

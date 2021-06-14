@@ -26,11 +26,9 @@
         }
       },
       "prefix": "jhi",
-      "architect": {}
+      "architect": {},
+      "defaultProject": "metarab",
+      "cli": {
+        "packageManager": "npm"
+      }
     }
-  },
-  "defaultProject": "metarab",
-  "cli": {
-    "packageManager": "npm"
-  }
-}

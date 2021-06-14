@@ -34,7 +34,7 @@ management:
 
 spring:
   profiles:
-    active: dev
+    active: dev,swagger
     include:
       - swagger
       # Uncomment to activate TLS for the dev profile
@@ -49,9 +49,9 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://localhost:3308/metarab?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
-    username: root
-    password:
+    url: jdbc:mysql://localhost:3306/metarab?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: user
+    password: salamsql2019
     hikari:
       poolName: Hikari
       auto-commit: false
@@ -61,7 +61,7 @@ spring:
         prepStmtCacheSqlLimit: 2048
         useServerPrepStmts: true
   jpa:
-    database-platform: org.hibernate.dialect.MySQL8Dialect
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     database: MYSQL
     show-sql: true
     properties:
@@ -71,13 +71,15 @@ spring:
       hibernate.cache.use_query_cache: false
       hibernate.generate_statistics: false
   data:
+    jest:
+      uri: http://localhost:9200
+    # see https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-nosql.html#boot-features-connecting-to-elasticsearch-jest
     elasticsearch:
-      properties:
-        path:
-          home: target/elasticsearch
+      rest:
+        uris: http://localhost:9200
   liquibase:
     # Remove 'faker' if you do not want the sample data to be loaded automatically
-    contexts: dev, faker
+    contexts: dev
   mail:
     host: localhost
     port: 25

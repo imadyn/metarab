@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
-import { JhiPaginationUtil, JhiResolvePagingParams } from 'ng-jhipster';
+import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot, Routes } from '@angular/router';
+import { JhiResolvePagingParams } from 'ng-jhipster';
 import { UserRouteAccessService } from 'app/core';
 import { Observable, of } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
-import { RefBahr } from 'app/shared/model/ref-bahr.model';
+import { IRefBahr, RefBahr } from 'app/shared/model/ref-bahr.model';
 import { RefBahrService } from './ref-bahr.service';
 import { RefBahrComponent } from './ref-bahr.component';
 import { RefBahrDetailComponent } from './ref-bahr-detail.component';
 import { RefBahrUpdateComponent } from './ref-bahr-update.component';
 import { RefBahrDeletePopupComponent } from './ref-bahr-delete-dialog.component';
-import { IRefBahr } from 'app/shared/model/ref-bahr.model';
 
 @Injectable({ providedIn: 'root' })
 export class RefBahrResolve implements Resolve<IRefBahr> {

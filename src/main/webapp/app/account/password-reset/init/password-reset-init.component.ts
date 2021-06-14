@@ -1,5 +1,5 @@
-import { Component, AfterViewInit, Renderer, ElementRef } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AfterViewInit, Component, ElementRef, Renderer } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 
 import { EMAIL_NOT_FOUND_TYPE } from 'app/shared';
 import { PasswordResetInitService } from './password-reset-init.service';

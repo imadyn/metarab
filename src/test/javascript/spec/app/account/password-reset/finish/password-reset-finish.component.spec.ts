@@ -1,7 +1,7 @@
-import { ComponentFixture, TestBed, inject, tick, fakeAsync } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, inject, TestBed, tick } from '@angular/core/testing';
 import { FormBuilder } from '@angular/forms';
-import { Observable, of, throwError } from 'rxjs';
-import { Renderer, ElementRef } from '@angular/core';
+import { of, throwError } from 'rxjs';
+import { ElementRef, Renderer } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { MetarabTestModule } from '../../../../test.module';

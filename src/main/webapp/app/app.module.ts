@@ -12,14 +12,21 @@ import { AuthExpiredInterceptor } from './blocks/interceptor/auth-expired.interc
 import { ErrorHandlerInterceptor } from './blocks/interceptor/errorhandler.interceptor';
 import { NotificationInterceptor } from './blocks/interceptor/notification.interceptor';
 import { MetarabSharedModule } from 'app/shared';
-import { MetarabCoreModule } from 'app/core';
+import { AccountService, MetarabCoreModule } from 'app/core';
 import { MetarabAppRoutingModule } from './app-routing.module';
 import { MetarabHomeModule } from './home/home.module';
 import { MetarabAccountModule } from './account/account.module';
 import { MetarabEntityModule } from './entities/entity.module';
 import * as moment from 'moment';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
-import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ActiveMenuDirective, ErrorComponent } from './layouts';
+import {
+  ActiveMenuDirective,
+  ErrorComponent,
+  FooterComponent,
+  JhiMainComponent,
+  NavbarComponent,
+  PageRibbonComponent
+} from './layouts';
 
 @NgModule({
   imports: [
@@ -42,6 +49,7 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
   ],
   declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
   providers: [
+    AccountService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

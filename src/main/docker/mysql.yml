@@ -1,12 +1,14 @@
 version: '2'
 services:
   metarab-mysql:
-    image: mysql:8.0.16
+    image: mysql:5.7
     # volumes:
     #     - ~/volumes/jhipster/metarab/mysql/:/var/lib/mysql/
     environment:
-      - MYSQL_USER=root
-      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_USER=user
+      - MYSQL_ROOT_PASSWORD=salamsql2019
+      - MYSQL_ALLOW_EMPTY_PASSWORD=no
+      - MYSQL_PASSWORD=salamsql2019
       - MYSQL_DATABASE=metarab
     ports:
       - 3306:3306

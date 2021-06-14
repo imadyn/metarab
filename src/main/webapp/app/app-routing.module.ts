@@ -13,6 +13,10 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
           path: 'admin',
           loadChildren: () => import('./admin/admin.module').then(m => m.MetarabAdminModule)
         },
+        {
+          path: 'bahrbait',
+          loadChildren: () => import('./search-bahr-bait/search-bahr-bait.module').then(m => m.SearchBahrBaitModule)
+        },
         ...LAYOUT_ROUTES
       ],
       { enableTracing: DEBUG_INFO_ENABLED }

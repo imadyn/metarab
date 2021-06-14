@@ -1,0 +1,41 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="root (generated)" id="1604922839801-3">
+        <createTable tableName="type_tb">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="type_tbPK"/>
+            </column>
+            <column name="code" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ordre" type="VARCHAR(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(255)"/>
+            <column name="ref_bahr_id" type="BIGINT"/>
+            <column name="ref_rhythm_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1604922839801-4">
+        <addForeignKeyConstraint baseColumnNames="ref_bahr_id" baseTableName="type_tb"
+                                 constraintName="FK8ggcx69d0afrdxlrgawkp8cwn" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="ref_bahr"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="root (generated)" id="1604922839801-5">
+        <addForeignKeyConstraint baseColumnNames="ref_rhythm_id" baseTableName="type_tb"
+                                 constraintName="FKaref9xiy8qkdk7dglvlnuitj9" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="ref_rhythm"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="root (generated)" id="1604922839801-1">
+        <dropUniqueConstraint constraintName="UC_JHI_USEREMAIL_COL" tableName="jhi_user"/>
+        <addUniqueConstraint columnNames="email" constraintName="UC_JHI_USEREMAIL_COL" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="root (generated)" id="1604922839801-2">
+        <dropUniqueConstraint constraintName="UC_JHI_USERLOGIN_COL" tableName="jhi_user"/>
+        <addUniqueConstraint columnNames="login" constraintName="UC_JHI_USERLOGIN_COL" tableName="jhi_user"/>
+    </changeSet>
+</databaseChangeLog>

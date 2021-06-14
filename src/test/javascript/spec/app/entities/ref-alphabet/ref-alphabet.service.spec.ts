@@ -1,11 +1,9 @@
 /* tslint:disable max-line-length */
-import { TestBed, getTestBed } from '@angular/core/testing';
+import { getTestBed, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { HttpClient, HttpResponse } from '@angular/common/http';
-import { of } from 'rxjs';
-import { take, map } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 import { RefAlphabetService } from 'app/entities/ref-alphabet/ref-alphabet.service';
-import { IRefAlphabet, RefAlphabet, Language } from 'app/shared/model/ref-alphabet.model';
+import { IRefAlphabet, Language, RefAlphabet } from 'app/shared/model/ref-alphabet.model';
 
 describe('Service Tests', () => {
   describe('RefAlphabet Service', () => {

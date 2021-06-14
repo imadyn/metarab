@@ -1,7 +1,7 @@
-import { ComponentFixture, TestBed, inject } from '@angular/core/testing';
-import { Renderer, ElementRef } from '@angular/core';
+import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
+import { ElementRef, Renderer } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { Observable, of, throwError } from 'rxjs';
+import { of, throwError } from 'rxjs';
 
 import { MetarabTestModule } from '../../../../test.module';
 import { PasswordResetInitComponent } from 'app/account/password-reset/init/password-reset-init.component';

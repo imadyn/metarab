@@ -1,9 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
-import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
+import { JhiAlertService, JhiEventManager, JhiParseLinks } from 'ng-jhipster';
 
 import { IRefBahr } from 'app/shared/model/ref-bahr.model';
 import { AccountService } from 'app/core';
@@ -138,7 +137,9 @@ export class RefBahrComponent implements OnInit, OnDestroy {
 
   loadPageAdvanced(page?: number): void {
     const pageToLoad: number = page || this.page;
-    if (!this.criteres) return;
+    if (!this.criteres) {
+      return;
+    }
 
     this.refBahrService
       .searchAdvanced(
@@ -156,7 +157,7 @@ export class RefBahrComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    //this.loadAll();
+    /*this.loadAll()*/
 
     this.searchAdvanced();
 

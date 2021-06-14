@@ -18,7 +18,6 @@ import javax.persistence.PersistenceContext;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -31,16 +30,22 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import ac.fidoteam.alkhalil.domain.BahrCombine;
+import ac.fidoteam.alkhalil.domain.BahrCombineBis;
 import ac.fidoteam.alkhalil.domain.RefAlphabet;
 import ac.fidoteam.alkhalil.domain.RefBahr;
 import ac.fidoteam.alkhalil.domain.RefRhythm;
 import ac.fidoteam.alkhalil.domain.TypeTB;
 import ac.fidoteam.alkhalil.domain.User;
+import ac.fidoteam.alkhalil.repository.BahrCombineBisRepository;
+import ac.fidoteam.alkhalil.repository.BahrCombineRepository;
 import ac.fidoteam.alkhalil.repository.RefAlphabetRepository;
 import ac.fidoteam.alkhalil.repository.RefBahrRepository;
 import ac.fidoteam.alkhalil.repository.RefRhythmRepository;
 import ac.fidoteam.alkhalil.repository.TypeTBRepository;
 import ac.fidoteam.alkhalil.repository.UserRepository;
+import ac.fidoteam.alkhalil.repository.search.BahrCombineBisSearchRepository;
+import ac.fidoteam.alkhalil.repository.search.BahrCombineSearchRepository;
 import ac.fidoteam.alkhalil.repository.search.RefAlphabetSearchRepository;
 import ac.fidoteam.alkhalil.repository.search.RefBahrSearchRepository;
 import ac.fidoteam.alkhalil.repository.search.RefRhythmSearchRepository;
@@ -72,11 +77,18 @@ public class ElasticsearchIndexService {
 
     private final TypeTBSearchRepository typeTBSearchRepository;
 
+    private final BahrCombineRepository bahrCombineRepository;
+
+    private final BahrCombineSearchRepository bahrCombineSearchRepository;
+    
+    private final BahrCombineBisRepository bahrCombineBisRepository;
+
+    private final BahrCombineBisSearchRepository bahrCombineBisSearchRepository;
+
     private final UserRepository userRepository;
 
     private final UserSearchRepository userSearchRepository;
-    
-    @Autowired
+
     private final ElasticsearchOperations elasticsearchTemplate;
     
     @PersistenceContext
@@ -93,8 +105,16 @@ public class ElasticsearchIndexService {
         RefRhythmSearchRepository refRhythmSearchRepository,
         TypeTBRepository typeTBRepository,
         TypeTBSearchRepository typeTBSearchRepository,
-        ElasticsearchOperations elasticsearchTemplate) {
-        this.userRepository = userRepository;
+        ElasticsearchOperations elasticsearchTemplate, 
+        BahrCombineBisRepository bahrCombineBisRepository, 
+        BahrCombineRepository bahrCombineRepository, 
+        BahrCombineSearchRepository bahrCombineSearchRepository, 
+        BahrCombineBisSearchRepository bahrCombineBisSearchRepository) {
+        this.bahrCombineRepository = bahrCombineRepository;
+		this.bahrCombineSearchRepository = bahrCombineSearchRepository;
+		this.bahrCombineBisRepository = bahrCombineBisRepository;
+		this.bahrCombineBisSearchRepository = bahrCombineBisSearchRepository;
+		this.userRepository = userRepository;
         this.userSearchRepository = userSearchRepository;
         this.refAlphabetRepository = refAlphabetRepository;
         this.refAlphabetSearchRepository = refAlphabetSearchRepository;
@@ -118,6 +138,8 @@ public class ElasticsearchIndexService {
                 reindexForClass(TypeTB.class, typeTBRepository, typeTBSearchRepository);
                 reindexForClass(User.class, userRepository, userSearchRepository);
 
+                reindexForClass(BahrCombine.class, bahrCombineRepository, bahrCombineSearchRepository);
+                reindexForClass(BahrCombineBis.class, bahrCombineBisRepository, bahrCombineBisSearchRepository);
                 log.info("Elasticsearch: Successfully performed reindexing");
             } finally {
                 reindexLock.unlock();
@@ -127,13 +149,18 @@ public class ElasticsearchIndexService {
         }
     }
 
-    @SuppressWarnings("unchecked")
+
     private <T, ID extends Serializable> void reindexForClass(Class<T> entityClass, JpaRepository<T, ID> jpaRepository,
                                                               ElasticsearchRepository<T, ID> elasticsearchRepository) {
-        elasticsearchTemplate.deleteIndex(entityClass);
+        
+    	if(elasticsearchTemplate.indexExists(entityClass)) {
+    		elasticsearchTemplate.deleteIndex(entityClass);	
+    	}
         elasticsearchTemplate.createIndex(entityClass);
         elasticsearchTemplate.putMapping(entityClass);
-        if (jpaRepository.count() > 0) {
+        final int size = 10000;
+        final long count = jpaRepository.count();
+        if (count > 0) {
             // if a JHipster entity field is the owner side of a many-to-many relationship, it should be loaded manually
             List<Method> relationshipGetters = Arrays.stream(entityClass.getDeclaredFields())
                 .filter(field -> field.getType().equals(Set.class))
@@ -142,7 +169,7 @@ public class ElasticsearchIndexService {
                 .filter(field -> field.getAnnotation(JsonIgnore.class) == null)
                 .map(field -> {
                     try {
-                        return new PropertyDescriptor((String) field.getName(), entityClass).getReadMethod();
+                        return new PropertyDescriptor(field.getName(), entityClass).getReadMethod();
                     } catch (IntrospectionException e) {
                         log.error("Error retrieving getter for class {}, field {}. Field will NOT be indexed",
                             entityClass.getSimpleName(), field.getName(), e);
@@ -152,10 +179,11 @@ public class ElasticsearchIndexService {
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
 
-            int size = 100;
-            for (int i = 0; i <= jpaRepository.count() / size; i++) {
-                Pageable page = new PageRequest(i, size);
-                log.info("Indexing page {} of {}, size {}", i, jpaRepository.count() / size, size);
+            
+            
+            for (int i = 0; i <= count / size; i++) {
+                Pageable page = PageRequest.of(i, size);
+                log.info("Indexing page {} of {}, size {}", i, count / size, size);
                 Page<T> results = jpaRepository.findAll(page);
                 results.map(result -> {
                     // if there are any relationships to load, do it now
