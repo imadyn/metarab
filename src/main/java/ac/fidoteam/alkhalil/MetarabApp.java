@@ -15,6 +15,7 @@ import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.core.env.Environment;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import ac.fidoteam.alkhalil.config.ApplicationProperties;
 import ac.fidoteam.alkhalil.config.DefaultProfileUtil;
@@ -23,6 +24,7 @@ import io.github.jhipster.config.JHipsterConstants;
 @SpringBootApplication
 @EnableConfigurationProperties({LiquibaseProperties.class, ApplicationProperties.class})
 @EnableDiscoveryClient
+@EnableScheduling
 public class MetarabApp implements InitializingBean {
 
     private static final Logger log = LoggerFactory.getLogger(MetarabApp.class);

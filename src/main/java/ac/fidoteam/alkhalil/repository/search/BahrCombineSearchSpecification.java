@@ -8,8 +8,6 @@ import static org.elasticsearch.index.query.QueryBuilders.matchQuery;
 
 import org.elasticsearch.index.query.QueryBuilder;
 
-import ac.fidoteam.alkhalil.service.dto.BahrBaitSearchCriteria;
-
 /**
  * @author haoui
  *

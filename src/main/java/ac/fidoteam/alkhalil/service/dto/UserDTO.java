@@ -48,6 +48,8 @@ public class UserDTO {
     private Instant createdDate;
 
     private String lastModifiedBy;
+    
+    private Boolean isOnline = Boolean.FALSE;
 
     private Instant lastModifiedDate;
 
@@ -196,4 +198,18 @@ public class UserDTO {
             ", authorities=" + authorities +
             "}";
     }
+
+	/**
+	 * @return the isOnline
+	 */
+	public Boolean getIsOnline() {
+		return isOnline;
+	}
+
+	/**
+	 * @param isOnline the isOnline to set
+	 */
+	public void setIsOnline(Boolean isOnline) {
+		this.isOnline = isOnline;
+	}
 }

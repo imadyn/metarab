@@ -1,0 +1,15 @@
+.chat-stream {
+  position: relative;
+  max-height: 88%;
+  height: 88%;
+  overflow: auto;
+}
+
+.stream-div {
+  position: absolute;
+  bottom: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-behavior: auto;
+  height: 100%;
+}

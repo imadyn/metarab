@@ -7,12 +7,14 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -41,6 +43,7 @@ import ac.fidoteam.alkhalil.service.dto.UserDTO;
 import ac.fidoteam.alkhalil.web.rest.errors.BadRequestAlertException;
 import ac.fidoteam.alkhalil.web.rest.errors.EmailAlreadyUsedException;
 import ac.fidoteam.alkhalil.web.rest.errors.LoginAlreadyUsedException;
+import ac.fidoteam.alkhalil.websocket.WebSocketEventListener;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -77,6 +80,11 @@ public class UserResource {
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
+    
+    @Autowired
+    private WebSocketEventListener webSocketEventListener;
+
+	private Stream<UserDTO> stream;
 
     private final UserService userService;
 
@@ -162,6 +170,20 @@ public class UserResource {
     @GetMapping("/users")
     public ResponseEntity<List<UserDTO>> getAllUsers(Pageable pageable) {
         final Page<UserDTO> page = userService.getAllManagedUsers(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+    
+    /**
+     * {@code GET /users} : get all users.
+     *
+     * @param pageable the pagination information.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body all users.
+     */
+    @GetMapping("/userschat")
+    public ResponseEntity<List<UserDTO>> getAllChatUsers(Pageable pageable) {
+        final Page<UserDTO> page = userService.getAllManagedUsers(pageable);
+        page.getContent().stream().filter(u -> webSocketEventListener.getSessions().contains(u.getLogin())).forEach(u -> u.setIsOnline(Boolean.TRUE));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

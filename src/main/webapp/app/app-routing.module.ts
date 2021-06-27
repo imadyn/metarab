@@ -17,6 +17,10 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
           path: 'bahrbait',
           loadChildren: () => import('./search-bahr-bait/search-bahr-bait.module').then(m => m.SearchBahrBaitModule)
         },
+        {
+          path: 'chat',
+          loadChildren: () => import('./chat/chat.module').then(m => m.ChatModule)
+        },
         ...LAYOUT_ROUTES
       ],
       { enableTracing: DEBUG_INFO_ENABLED }
