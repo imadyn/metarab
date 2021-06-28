@@ -19,7 +19,7 @@ public class WebSocketEventListener {
 
     private static final Logger logger = LoggerFactory.getLogger(WebSocketEventListener.class);
     
-    private final Collection<String> sessions = Collections.synchronizedList(new ArrayList<>());
+    private final Collection<String> sessionsConnected = Collections.synchronizedList(new ArrayList<>());
 
     @EventListener
     public void handleWebSocketConnectListener(SessionConnectedEvent event) {
@@ -27,7 +27,10 @@ public class WebSocketEventListener {
 
         String username = ((User)((UsernamePasswordAuthenticationToken)event.getUser()).getPrincipal()).getUsername() ;
         if (username != null) {
-        	sessions.add(username);
+        	if(sessionsConnected.contains(username)) {
+        		throw new IllegalArgumentException("user already connected");
+        	}
+        	sessionsConnected.add(username);
         }
     }
 
@@ -37,7 +40,7 @@ public class WebSocketEventListener {
         StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
         String username = (String) headerAccessor.getSessionAttributes().get("username");
         if (username != null) {
-        	sessions.remove(username);
+        	sessionsConnected.remove(username);
         }
     }
 
@@ -45,6 +48,6 @@ public class WebSocketEventListener {
 	 * @return the sessions
 	 */
 	public Collection<String> getSessions() {
-		return sessions;
+		return sessionsConnected;
 	}
 }

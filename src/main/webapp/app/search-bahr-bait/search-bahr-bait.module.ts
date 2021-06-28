@@ -12,6 +12,7 @@ const ENTITY_STATES = [...bahrCombineRoute];
   imports: [MetarabSharedModule, RouterModule.forChild(ENTITY_STATES)],
   declarations: [SearchBahrBaitComponent],
   providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],
+  exports: [SearchBahrBaitComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class SearchBahrBaitModule {
