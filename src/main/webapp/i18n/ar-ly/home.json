@@ -1,19 +1,19 @@
 {
   "home": {
-    "title": "أهلا وسهلا بك في موقع مطراب الشعر العربي!",
+    "title": "أهلا وسهلا بك في موقع مطراب! لدراسة علم العروض و بحور الشعر العربي",
     "subtitle": "هذه صفحتك الرئيسية لدراسة علم العروض و بحور الشعر العربي",
     "logged": {
       "message": "قمت بتسجيل الدخول كمستخدم \"{{username}}\"."
     },
-    "question": "إذا كان لديك أي سؤال حول JHipster:",
+    "question": "إذا كان لديك أي سؤال حول Metarab:",
     "link": {
-      "homepage": "JHipster homepage",
-      "stackoverflow": "JHipster on Stack Overflow",
-      "bugtracker": "JHipster bug tracker",
-      "chat": "JHipster public chat room",
-      "follow": "follow @java_hipster on Twitter"
+      "homepage": "Metarab homepage",
+      "stackoverflow": "Metarab on Stack Overflow",
+      "bugtracker": "Metarab bug tracker",
+      "chat": "Metarab public chat room",
+      "follow": "follow @metarabe  on Facebook"
     },
-    "like": "إذا كنت تحب JHipster، لا تنسى أن تعطي لنا نجم على",
-    "github": "GitHub"
+    "like": "إذا كنت تحب Metarab، لا تنسى أن تعطي لنا نجم على",
+    "github": "metarab.git"
   }
 }

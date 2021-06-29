@@ -4,13 +4,15 @@
       "home": {
         "title": "bahr bayt",
         "search": "Recherche bahr bayt",
+        "search1": "بحث  عن البحور",
         "notFound": "Aucun Bahr trouvé"
       },
       "detail": {
         "title": "bahr bayt"
       },
       "partie1": "Partie 1",
-      "partie2": "Partie 2"
+      "partie2": "Partie 2",
+      "resultat": "نتيجة البحث"
     }
   }
 }

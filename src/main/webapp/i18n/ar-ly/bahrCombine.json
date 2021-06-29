@@ -2,15 +2,17 @@
   "metarabApp": {
     "bahrCombine": {
       "home": {
-        "title": "bahr bayt",
-        "search": "Recherche bahr bayt",
-        "notFound": "Aucun Bahr trouvé"
+        "title": "ادخل البيت",
+        "search": "بحث بمفاتيح البحور",
+        "search1": "بحث  عن البحور",
+        "notFound": "لا توجد أيت نتيجة"
       },
       "detail": {
-        "title": "bahr bayt"
+        "title": "تفاصيل"
       },
-      "partie1": "Partie 1",
-      "partie2": "Partie 2"
+      "partie1": "الشطر الأول",
+      "partie2": "الشطر الثاني",
+      "resultat": "نتيجة البحث"
     }
   }
 }
