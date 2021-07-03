@@ -31,8 +31,7 @@ export class SearchBahrBaitComponent implements OnInit {
     protected parseLinks: JhiParseLinks,
     protected accountService: AccountService,
     private searchBahrBaitService: SearchBahrBaitService
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.loadAll();
@@ -40,8 +39,12 @@ export class SearchBahrBaitComponent implements OnInit {
       this.currentAccount = account;
     });
   }
-
-  search() {
+  clear() {
+    this.codeBahrs = null;
+    this.searchForm = this.fb.group({
+      partie1: [null, [Validators.required, Validators.maxLength(64)]],
+      partie2: [null, [Validators.maxLength(64)]]
+    });
   }
 
   loadAll() {

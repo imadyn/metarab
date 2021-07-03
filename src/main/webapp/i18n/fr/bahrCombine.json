@@ -5,10 +5,27 @@
         "title": "bahr bayt",
         "search": "Recherche par clé Bohors",
         "search1": "Recherche Bohors",
+        "reset": "Reset",
         "notFound": "Aucun Bahr trouvé"
       },
       "detail": {
-        "title": "bahr bayt"
+        "title": "bahr bayt",
+        "B1": "بحر الطويل",
+        "B2": "بحر المديد",
+        "B3": "بحر البسيط",
+        "B4": "بحر الرجز",
+        "B5": "بحر الكامل",
+        "B6": "بحر الوافر",
+        "B7": "بحر الهزج",
+        "B8": "بحر الرمل",
+        "B9": "بحر السريع",
+        "B10": "بحر المنسرح",
+        "B11": "بحر الخفيف",
+        "B12": "بحر المضارع",
+        "B13": "بحر المقتضب",
+        "B14": "بحر المجتث",
+        "B15": "بحر المتقارب",
+        "B16": "بحر المتدارك"
       },
       "partie1": "Partie 1",
       "partie2": "Partie 2",

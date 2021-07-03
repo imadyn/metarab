@@ -1,79 +1,73 @@
 <div class="container-fluid justify-content-center">
-    <div class="row">
-      <!-- <div class="col-lg-5"></div> -->
 
-        <div class="col-lg-12 col-md-12 col-sm-12">
-
-        <img src="../../../content/images/logometarab.PNG" class="mx-auto d-block" width="250"/>
+    <div class="card text-center">
+        <div class="card-header" style="background-color: white;" >
+            <img src="../../../content/images/logometarab.PNG" alt="Metarab LOGO" class="mx-auto d-block" width="250">
         </div>
+        <div class="card-body">
 
-        <!--  <div class="col-lg-3"></div> -->
-      </div>
+           <!-- <h5 class="card-title text-right" jhiTranslate="home.title">Special title treatment</h5> -->
+            <div class="card-text">
 
-     <div class="container-fluid">
-         <div class="row">
-             <div class="col-lg-5 col-md-8 col-sm-12">
-         <strong class="lead" jhiTranslate="home.title">Welcome, Java Metarab!</strong>
-             </div>
-             <div class="col-lg-7 col-md-4 col-sm-1"></div>
-         </div>
-         <form  name="searchForm" role="form" novalidate (ngSubmit)="loadAll()" [formGroup]="searchForm">
-               <!--   <h2 id="jhi-ref-alphabet-heading" jhiTranslate="metarabApp.bahrCombine.home.title" >Bahr Bayt</h2> -->
-                <div class="form-row">
-                   <!-- <jhi-alert-error></jhi-alert-error> -->
-                    <div class="form-group col-lg-2 col-md-1 col-sm-1"></div>
-                    <div class="form-group col-lg-4 col-md-12 col-sm-10">
-                        <input type="text" class="form-control" name="partie1" id="field_partie1"
-                               formControlName="partie1" placeholder="{{'metarabApp.bahrCombine.partie1' | translate}}"/>
-                        <div *ngIf="searchForm.get('partie1').invalid && (searchForm.get('partie1').dirty || searchForm.get('partie1').touched)">
-                            <small class="form-text text-danger"
-                                   *ngIf="searchForm.get('partie1').errors.required" jhiTranslate="entity.validation.required">
-                                This field is required.
-                            </small>
-                            <small class="form-text text-danger"
-                                   *ngIf="searchForm.get('partie1').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 32 }">
-                                This field cannot be longer than 32 characters.
-                            </small>
+
+                <form  name="searchForm" role="form" novalidate (reset)="clear()" (ngSubmit)="loadAll()" [formGroup]="searchForm">
+                    <!--   <h2 id="jhi-ref-alphabet-heading" jhiTranslate="metarabApp.bahrCombine.home.title" >Bahr Bayt</h2> -->
+                    <div class="form-row">
+                        <!-- <jhi-alert-error></jhi-alert-error> -->
+                        <div class="col-lg-2 col-md-1 col-sm-1"></div>
+                        <div class="form-group col-lg-4 col-md-12 col-sm-10 center-block"  >
+                            <input type="text"  name="partie1" id="field_partie1"
+                                   formControlName="partie1" placeholder="{{'metarabApp.bahrCombine.partie1' | translate}}"/>
+                            <div *ngIf="searchForm.get('partie1').invalid && (searchForm.get('partie1').dirty || searchForm.get('partie1').touched)">
+                                <small class="form-text text-danger"
+                                       *ngIf="searchForm.get('partie1').errors.required" jhiTranslate="entity.validation.required">
+                                    This field is required.
+                                </small>
+                                <small class="form-text text-danger"
+                                       *ngIf="searchForm.get('partie1').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 32 }">
+                                    This field cannot be longer than 32 characters.
+                                </small>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group col-lg-6 col-md-12 col-sm-10">
-                        <input type="text" class="form-control" name="partie2" id="field_partie2"
-                               formControlName="partie2" placeholder="{{'metarabApp.bahrCombine.partie2' | translate}}"/>
-                        <div *ngIf="searchForm.get('partie2').invalid && (searchForm.get('partie2').dirty || searchForm.get('partie2').touched)">
-                            <small class="form-text text-danger"
-                                   *ngIf="searchForm.get('partie2').errors.required" jhiTranslate="entity.validation.required">
-                                This field is required.
-                            </small>
-                            <small class="form-text text-danger"
-                                   *ngIf="searchForm.get('partie2').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 64 }">
-                                This field cannot be longer than 64 characters.
-                            </small>
+                        <div class="form-group col-lg-4 col-md-12 col-sm-10 center-block">
+                            <input type="text" name="partie2" id="field_partie2"
+                                   formControlName="partie2" placeholder="{{'metarabApp.bahrCombine.partie2' | translate}}"/>
+                            <div *ngIf="searchForm.get('partie2').invalid && (searchForm.get('partie2').dirty || searchForm.get('partie2').touched)">
+                                <small class="form-text text-danger"
+                                       *ngIf="searchForm.get('partie2').errors.required" jhiTranslate="entity.validation.required">
+                                    This field is required.
+                                </small>
+                                <small class="form-text text-danger"
+                                       *ngIf="searchForm.get('partie2').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 64 }">
+                                    This field cannot be longer than 64 characters.
+                                </small>
+                            </div>
                         </div>
+                            <div class="col-lg-2 col-md-1 col-sm-1"></div>
                     </div>
+                            <button type="reset" id="reset-entity" class="btn btn-primary">
+                                <fa-icon [icon]="'reset'"></fa-icon>&nbsp;<span jhiTranslate="metarabApp.bahrCombine.home.reset">Reset</span>
+                            </button>
+                            <button type="submit" id="search-entity" [disabled]="searchForm.invalid || isSearching" class="btn btn-primary">
+                                <fa-icon [icon]="'search'"></fa-icon>&nbsp;<span jhiTranslate="metarabApp.bahrCombine.home.search">Search key</span>
+                            </button>
+                            <button type="submit" id="search-entity1" [disabled]="searchForm.invalid || isSearching" class="btn btn-primary">
+                                <fa-icon [icon]="'search'"></fa-icon>&nbsp;<span jhiTranslate="metarabApp.bahrCombine.home.search1">Search</span>
+                            </button>
 
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-lg-2 col-md-1 col-sm-1"></div>
-                    <div class="form-group col-lg-4 col-md-12 col-sm-10">
-                    <button type="submit" id="search-entity" [disabled]="searchForm.invalid || isSearching" class="btn btn-primary">
-                        <fa-icon [icon]="'search'"></fa-icon>&nbsp;<span jhiTranslate="metarabApp.bahrCombine.home.search">Search key</span>
-                    </button>
-                </div>
-                <div class="form-group col-lg-6 col-md-12 col-sm-10">
-                    <button type="submit" id="search-entity1" class="btn btn-primary">
-                        <fa-icon [icon]="'search'"></fa-icon>&nbsp;<span jhiTranslate="metarabApp.bahrCombine.home.search1">Search</span>
-                    </button>
-                </div>
+
+                </form>
+
+
+
+
             </div>
-        </form>
 
-
-    </div>
-
-
-        <div class="alert alert-warning" *ngIf="codeBahrs?.length === 0">
+        </div>
+        <div class="card-footer text-muted">
+            <div class="alert alert-warning" *ngIf="codeBahrs?.length === 0">
                 <span jhiTranslate="audits.notFound">Aucun code bahr trouvée</span>
-         </div>
+            </div>
 
             <div class="table-responsive" *ngIf="codeBahrs?.length > 0">
                 <table class="table table-sm table-striped">
@@ -84,10 +78,20 @@
                     </thead>
                     <tbody>
                     <tr *ngFor="let c of codeBahrs">
-                        <td><span>{{c}}</span></td>
+                        <td><span jhiTranslate="{{'metarabApp.bahrCombine.detail.' + c}}">{{c}}</span></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
 
 </div>
