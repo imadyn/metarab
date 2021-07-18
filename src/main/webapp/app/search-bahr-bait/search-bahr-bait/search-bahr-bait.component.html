@@ -10,7 +10,7 @@
             <div class="card-text">
 
 
-                <form  name="searchForm" role="form" novalidate (reset)="clear()" (ngSubmit)="loadAll()" [formGroup]="searchForm">
+                <form  name="searchForm" role="form" novalidate (reset)="clear()" [formGroup]="searchForm">
                     <!--   <h2 id="jhi-ref-alphabet-heading" jhiTranslate="metarabApp.bahrCombine.home.title" >Bahr Bayt</h2> -->
                     <div class="form-row">
                         <!-- <jhi-alert-error></jhi-alert-error> -->
@@ -48,10 +48,10 @@
                             <button type="reset" id="reset-entity" class="btn btn-primary">
                                 <fa-icon [icon]="'reset'"></fa-icon>&nbsp;<span jhiTranslate="metarabApp.bahrCombine.home.reset">Reset</span>
                             </button>
-                            <button type="submit" id="search-entity" [disabled]="searchForm.invalid || isSearching" class="btn btn-primary">
+                            <button type="submit" id="search-entity" (click)="loadByKey()" [disabled]="searchForm.invalid || isSearching" class="btn btn-primary">
                                 <fa-icon [icon]="'search'"></fa-icon>&nbsp;<span jhiTranslate="metarabApp.bahrCombine.home.search">Search key</span>
                             </button>
-                            <button type="submit" id="search-entity1" [disabled]="searchForm.invalid || isSearching" class="btn btn-primary">
+                            <button type="submit" id="search-entity1" (click)="loadAll()" [disabled]="searchForm.invalid || isSearching" class="btn btn-primary">
                                 <fa-icon [icon]="'search'"></fa-icon>&nbsp;<span jhiTranslate="metarabApp.bahrCombine.home.search1">Search</span>
                             </button>
 

@@ -9,7 +9,7 @@ type EntityArrayResponseType = HttpResponse<String[]>;
 @Injectable({
   providedIn: 'root'
 })
-export class SearchBahrBaitService {
+export class SearchBahrService {
   public resourceSearchUrl = SERVER_API_URL + 'api/_search/ref-bahrs/baitbykey';
   public resourceSearchByBaitUrl = SERVER_API_URL + 'api/_search/ref-bahrs/bahrbybait';
 

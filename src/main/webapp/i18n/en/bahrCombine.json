@@ -3,6 +3,7 @@
     "bahrCombine": {
       "home": {
         "title": "bahr bayt",
+        "title1": "إختر التفاعيل",
         "search": "Search by Bohors key",
         "search1": "Search Bohors",
         "reset": "Reset",
@@ -29,6 +30,7 @@
       },
       "partie1": "Partie 1",
       "partie2": "Partie 2",
+      "pas1": "التفعيلة الأولى",
       "resultat": "Result"
     }
   }

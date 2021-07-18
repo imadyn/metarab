@@ -387,7 +387,7 @@ export class Paragraphe {
   phrases?: Phrase[];
 
   valeurRhythmPart1?: string;
-  valeurRhythmPart2?: string;
+  valeurRhythmPart2 = '';
 
   constructor(part1: string, part2?: string) {
     this.phrases = new Array();

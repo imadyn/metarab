@@ -62,7 +62,7 @@ public class BahrCombineServiceImpl implements BahrCombineService {
 
         List<String> bahrsP1 = bahrCombineBisRepository.findBahrBaitByKey(query.getPartie1());
 
-        if(query.getPartie2() != null){
+        if(query.getPartie2() != null && query.getPartie2() != ""){
             List<String> bahrsP2 = bahrCombineBisRepository.findBahrBaitByKey(query.getPartie2());
             bahrsP1.retainAll(bahrsP2);
         }
@@ -93,6 +93,12 @@ public class BahrCombineServiceImpl implements BahrCombineService {
 		log.debug("Request to search for a page of BahrCombineBiss for query {}", query);
         return bahrCombineBisSearchRepository.search(queryStringQuery(query), pageable)
             .map(bahrCombineBisMapper::toDto);
+	}
+
+	@Override
+	public List<String> searchByBait(String bait) {
+		log.debug("Request to searchByBait {}", bait);
+		return bahrCombineRepository.findBahrByBait(bait);
 	}
 
 

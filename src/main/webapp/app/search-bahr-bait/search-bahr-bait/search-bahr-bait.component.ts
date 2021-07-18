@@ -54,6 +54,19 @@ export class SearchBahrBaitComponent implements OnInit {
 
     const paragraphe = new Paragraphe(this.searchForm.get('partie1').value, this.searchForm.get('partie2').value);
     paragraphe.transforms();
+    const transformedParag = paragraphe.valeurRhythmPart1 + paragraphe.valeurRhythmPart2;
+    this.searchBahrBaitService
+      .searchByBayt(transformedParag)
+      .subscribe((res: HttpResponse<String[]>) => (this.codeBahrs = res.body), (res: HttpErrorResponse) => this.onError(res.message));
+  }
+
+  loadByKey() {
+    if (!this.searchForm.valid) {
+      return;
+    }
+
+    const paragraphe = new Paragraphe(this.searchForm.get('partie1').value, this.searchForm.get('partie2').value);
+    paragraphe.transforms();
     console.log('transform : valeurRhythmPart1 = ' + paragraphe.valeurRhythmPart1);
     console.log('transform : valeurRhythmPart2 = ' + paragraphe.valeurRhythmPart2);
 

@@ -18,6 +18,10 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
           loadChildren: () => import('./search-bahr-bait/search-bahr-bait.module').then(m => m.SearchBahrBaitModule)
         },
         {
+          path: 'bahr',
+          loadChildren: () => import('./search-bahr/search-bahr.module').then(m => m.SearchBahrModule)
+        },
+        {
           path: 'chat',
           loadChildren: () => import('./chat/chat.module').then(m => m.ChatModule)
         },

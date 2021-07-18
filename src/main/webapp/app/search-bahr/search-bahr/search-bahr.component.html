@@ -1,0 +1,141 @@
+<div class="container-fluid justify-content-center">
+
+    <div class="card text-center">
+        <div class="card-header" style="background-color: white;" >
+            <img src="../../../content/images/logometarab.PNG" alt="Metarab LOGO" class="mx-auto d-block" width="250">
+        </div>
+        <div class="card-body">
+
+           <!-- <h5 class="card-title text-right" jhiTranslate="home.title">Special title treatment</h5> -->
+            <div class="card-text">
+
+
+                <form  name="searchForm" role="form" novalidate [formGroup]="searchForm">
+                    <!--   <h2 id="jhi-ref-alphabet-heading" jhiTranslate="metarabApp.bahrCombine.home.title" >Bahr Bayt</h2> -->
+                    <div class="form-row">
+                        <!-- <jhi-alert-error></jhi-alert-error> -->
+                        <div class="col-lg-2 col-md-1 col-sm-1">
+                            <select formControlName="pas1" (change)="onChoise(1)" [(ngModel)]="selectedRhythm" class="selectpicker">
+                                <option value="" selected disabled>اختر التفعيلة</option>
+                                <option [ngValue]="rhythm" *ngFor="let rhythm of refRhythms">
+                                    <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.parentId}}">{{rhythm.name}}</td>
+                                    {{rhythm.name}}
+                                    <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.transform}}">{{rhythm.transform}}</td>
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-lg-2 col-md-1 col-sm-1">
+                            <select formControlName="pas2" (change)="onChoise(2)" [(ngModel)]="selectedRhythm" class="selectpicker">
+                                <optgroup label="Classics" ></optgroup>
+                                <option [ngValue]="rhythm" *ngFor="let rhythm of refRhythms">
+                                    <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.parentId}}">{{rhythm.name}}</td>
+                                    {{rhythm.name}}
+                                    <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.transform}}">{{rhythm.transform}}</td>
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-sm-1">
+                            <select formControlName="pas3" (change)="onChoise(3)" [(ngModel)]="selectedRhythm" class="selectpicker">
+                                <optgroup label="Classics" ></optgroup>
+                                <option [ngValue]="rhythm" *ngFor="let rhythm of refRhythms">
+                                    <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.parentId}}">{{rhythm.name}}</td>
+                                    {{rhythm.name}}
+                                    <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.transform}}">{{rhythm.transform}}</td>
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-sm-1">
+                            <select formControlName="pas4" (change)="onChoise(4)" [(ngModel)]="selectedRhythm" class="selectpicker">
+                                <optgroup label="Classics" ></optgroup>
+                                <option [ngValue]="rhythm" *ngFor="let rhythm of refRhythms">
+                                    <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.parentId}}">{{rhythm.name}}</td>
+                                    {{rhythm.name}}
+                                    <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.transform}}">{{rhythm.transform}}</td>
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-lg-2 col-md-1 col-sm-1">
+                            <select formControlName="pas5" (change)="onChoise(5)" [(ngModel)]="selectedRhythm" class="selectpicker">
+                                <optgroup label="Classics" ></optgroup>
+                                <option [ngValue]="rhythm" *ngFor="let rhythm of refRhythms">
+                                    <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.parentId}}">{{rhythm.name}}</td>
+                                    {{rhythm.name}}
+                                    <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.transform}}">{{rhythm.transform}}</td>
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-lg-2 col-md-1 col-sm-1">
+                            <select formControlName="pas6" (change)="onChoise(6)" [(ngModel)]="selectedRhythm" class="selectpicker">
+                                <optgroup label="Classics" ></optgroup>
+                                <option [ngValue]="rhythm" *ngFor="let rhythm of refRhythms">
+                                    <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.parentId}}">{{rhythm.name}}</td>
+                                    {{rhythm.name}}
+                                    <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.transform}}">{{rhythm.transform}}</td>
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-sm-1">
+                            <select formControlName="pas7" (change)="onChoise(7)" [(ngModel)]="selectedRhythm" class="selectpicker">
+                                <optgroup label="Classics" ></optgroup>
+                                <option [ngValue]="rhythm" *ngFor="let rhythm of refRhythms">
+                                    <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.parentId}}">{{rhythm.name}}</td>
+                                    {{rhythm.name}}
+                                    <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.transform}}">{{rhythm.transform}}</td>
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-sm-1">
+                            <select formControlName="pas8" (change)="onChoise(8)" [(ngModel)]="selectedRhythm" class="selectpicker">
+                                <optgroup label="Classics" ></optgroup>
+                                <option [ngValue]="rhythm" *ngFor="let rhythm of refRhythms">
+                                    <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.parentId}}">{{rhythm.name}}</td>
+                                    {{rhythm.name}}
+                                    <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.transform}}">{{rhythm.transform}}</td>
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                            <button type="submit" id="search-entity1" (click)="searchByRhythms()" [disabled]="searchForm.invalid || isSearching" class="btn btn-primary">
+                                <fa-icon [icon]="'search'"></fa-icon>&nbsp;<span jhiTranslate="metarabApp.bahrCombine.home.search1">Search</span>
+                            </button>
+
+
+                </form>
+
+
+
+
+            </div>
+
+        </div>
+        <div class="card-footer text-muted">
+            <div class="alert alert-warning" *ngIf="codeBahrs?.length === 0">
+                <span jhiTranslate="audits.notFound">Aucun code bahr trouvée</span>
+            </div>
+
+            <div class="table-responsive" *ngIf="codeBahrs?.length > 0">
+                <table class="table table-sm table-striped">
+                    <thead>
+                    <tr>
+                        <span jhiTranslate="metarabApp.bahrCombine.resultat">Bahr</span>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let c of codeBahrs">
+                        <td><span jhiTranslate="{{'metarabApp.bahrCombine.detail.' + c}}">{{c}}</span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+</div>

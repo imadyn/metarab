@@ -62,6 +62,14 @@
                     </span>
                 </a>
             </li>
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link" routerLink="/bahr" (click)="collapseNavbar()">
+                    <span>
+                        <fa-icon icon="search"></fa-icon>
+                        <span jhiTranslate="global.menu.bahrsearch">Bahr Search</span>
+                    </span>
+                </a>
+            </li>
             <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu">
                     <span>

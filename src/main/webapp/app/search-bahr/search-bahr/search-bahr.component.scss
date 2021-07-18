@@ -1,0 +1,29 @@
+input[type='text'] {
+  border: 1px solid #000;
+  border-radius: 7px;
+  background-color: #fff;
+  color: #000;
+  font-size: 1rem;
+  padding: 0 20px;
+  height: 40px;
+  width: 250px;
+}
+button {
+  margin: 10px 20px;
+  border: none;
+  line-height: 3;
+  padding: 0 20px;
+  font-size: 1rem;
+  text-align: center;
+  color: #fff;
+  border-radius: 7px;
+  background-color: rgba(26, 188, 156, 1);
+  width: 200px;
+}
+
+button:disabled {
+  background-color: rgba(26, 188, 156, 0.7);
+}
+.button5 {
+  background-color: #555555;
+} /* Black */

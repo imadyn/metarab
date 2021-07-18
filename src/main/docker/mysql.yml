@@ -2,8 +2,6 @@ version: '2'
 services:
   metarab-mysql:
     image: mysql:5.7
-    # volumes:
-    #     - ~/volumes/jhipster/metarab/mysql/:/var/lib/mysql/
     environment:
       - MYSQL_USER=user
       - MYSQL_ROOT_PASSWORD=salamsql2019

@@ -1,10 +1,10 @@
 
-  ${AnsiColor.GREEN}      ██╗${AnsiColor.RED} ██╗   ██╗ ████████╗ ███████╗   ██████╗ ████████╗ ████████╗ ███████╗
-  ${AnsiColor.GREEN}      ██║${AnsiColor.RED} ██║   ██║ ╚══██╔══╝ ██╔═══██╗ ██╔════╝ ╚══██╔══╝ ██╔═════╝ ██╔═══██╗
-  ${AnsiColor.GREEN}      ██║${AnsiColor.RED} ████████║    ██║    ███████╔╝ ╚█████╗     ██║    ██████╗   ███████╔╝
-  ${AnsiColor.GREEN}██╗   ██║${AnsiColor.RED} ██╔═══██║    ██║    ██╔════╝   ╚═══██╗    ██║    ██╔═══╝   ██╔══██║
-  ${AnsiColor.GREEN}╚██████╔╝${AnsiColor.RED} ██║   ██║ ████████╗ ██║       ██████╔╝    ██║    ████████╗ ██║  ╚██╗
-  ${AnsiColor.GREEN} ╚═════╝ ${AnsiColor.RED} ╚═╝   ╚═╝ ╚═══════╝ ╚═╝       ╚═════╝     ╚═╝    ╚═══════╝ ╚═╝   ╚═╝
+                                     ${AnsiColor.GREEN}${AnsiColor.GREEN}${AnsiColor.GREEN}${AnsiColor.GREEN} ${AnsiColor.GREEN}                                      
+ ${AnsiColor.GREEN}    /|    //| |   ${AnsiColor.GREEN}${AnsiColor.GREEN}${AnsiColor.GREEN}${AnsiColor.GREEN} ${AnsiColor.GREEN}
+ ${AnsiColor.GREEN}   //|   // | |     ___     __  ___     ___        __        ___       / __     ${AnsiColor.GREEN}${AnsiColor.GREEN}
+ ${AnsiColor.GREEN}  // |  //  | |   //___) )   / /      //   ) )   //  ) )   //   ) )   //   ) )  ${AnsiColor.GREEN}${AnsiColor.GREEN}
+ ${AnsiColor.GREEN} //  | //   | |  //         / /      //   / /   //        //   / /   //   / /   ${AnsiColor.GREEN}${AnsiColor.GREEN}
+ ${AnsiColor.GREEN}//   |//    | | ((____     / /      ((___( (   //        ((___( (   ((___/ /    ${AnsiColor.GREEN}${AnsiColor.GREEN}
 
 ${AnsiColor.BRIGHT_BLUE}:: JHipster 🤓  :: Running Spring Boot ${spring-boot.version} ::
-:: https://www.jhipster.tech ::${AnsiColor.DEFAULT}
+:: https://www.fidoteam.net ::${AnsiColor.DEFAULT}

@@ -6,8 +6,7 @@ export interface IBahrCombine {
 }
 
 export class BahrCombine implements IBahrCombine {
-  constructor(public id?: number, public code?: string, public taille?: number, public valeurRhythm?: string) {
-  }
+  constructor(public id?: number, public code?: string, public taille?: number, public valeurRhythm?: string) {}
 }
 
 export interface IBahrBaitSearchCriteria {
@@ -16,6 +15,5 @@ export interface IBahrBaitSearchCriteria {
 }
 
 export class BahrBaitSearchCriteria implements IBahrBaitSearchCriteria {
-  constructor(public partie1?: string, public partie2?: string) {
-  }
+  constructor(public partie1?: string, public partie2?: string) {}
 }

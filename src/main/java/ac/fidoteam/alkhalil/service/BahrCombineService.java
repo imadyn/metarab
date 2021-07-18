@@ -38,4 +38,7 @@ public interface BahrCombineService {
 
     List<String> searchByKeyBahr(BahrBaitSearchCriteria query);
 
+    List<String> searchByBait(String bait);
+
+
 }

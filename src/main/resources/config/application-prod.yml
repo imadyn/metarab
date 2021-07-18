@@ -136,10 +136,10 @@ jhipster:
         # - In the JHipster Registry (which includes a Spring Cloud Config server)
         # - In a separate `application-prod.yml` file, in the same folder as your executable JAR file
         # - In the `JHIPSTER_SECURITY_AUTHENTICATION_JWT_BASE64_SECRET` environment variable
-        base64-secret: OGI1MDFmZGQzNjAyMjgxNGYxNmZmMDI2Y2RmNzM1ODYyY2U5YTEyNzcyZjc1ZDNlNTkyNGNkYjZkMDUwYTJiZjM1M2Y1MTM5NmMwZjk0NTMyNTJkNTQxMTAxZDMyOTRmY2E2ZWNiNWI2MzVmZmM3YTlmZDBkYWQ5YTA5MzMzZDM=
+        base64-secret: o8/oyLIraif8bQzaBR4j1l5+nvmSI0q8as/YIX55gx/qQNUDPzOFvCZWVl+EFlxfAC/ggnTc55NIRgmEeAKSBR0ypfoIAgf+A1DdPWOG0c49jwFWWik3cNj7yXCkBmc7H/RC9zPQZ2JXXWOm3hgCSkz/gcSY6tDWVaYwvVFInW6ClY8EUxwQ7unJnZz/kpjnS7TAoqEhhikMawSWr71Ymy6IwmE/Gp76KpHBd5QRnt6FrVVnpJ2urP2rPMXt1Gfmi+GIZmA3Y16S/h+6zVOUi0r7xLyGCYqb5ae0xh71B/rcUyst3lyvsilUs+NLy4W6b8dcQPa2nUsdaKmJzz8EQQ==
         # Token is valid 24 hours
-        token-validity-in-seconds: 86400
-        token-validity-in-seconds-for-remember-me: 2592000
+        token-validity-in-seconds: 3600
+        token-validity-in-seconds-for-remember-me: 86400
   mail: # specific JHipster mail property, for standard properties see MailProperties
     base-url: http://my-server-url-to-change # Modify according to your server's URL
   metrics:
