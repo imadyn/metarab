@@ -4,19 +4,31 @@
         <div class="card-header" style="background-color: white;" >
             <img src="../../../content/images/logometarab.PNG" alt="Metarab LOGO" class="mx-auto d-block" width="250">
         </div>
-        <div class="card-body">
+        <div class="card-body align-items-center">
 
+            <div class="alert alert-danger" *ngIf="missingFields">
+                <span>المرجو إختيار التفعيلات</span>
+            </div>
            <!-- <h5 class="card-title text-right" jhiTranslate="home.title">Special title treatment</h5> -->
-            <div class="card-text">
-
-
+            <div>
                 <form  name="searchForm" role="form" novalidate [formGroup]="searchForm">
                     <!--   <h2 id="jhi-ref-alphabet-heading" jhiTranslate="metarabApp.bahrCombine.home.title" >Bahr Bayt</h2> -->
-                    <div class="form-row">
+                    <div class="form-row mb-1">
+                        <div>
+                            <label for="selectTypeBahr" style="font-weight:bold">عدد التفعيلات</label>
+                            <select id="selectTypeBahr" formControlName="pasNumber" (change)="clear()" class="form-control" [(ngModel)]="typeBahr">
+                                <option [ngValue]="tb" *ngFor="let tb of typeBahrs">
+                                    {{tb}}
+                                </option>
+                            </select>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="row form-row">
                         <!-- <jhi-alert-error></jhi-alert-error> -->
-                        <div class="col-lg-2 col-md-1 col-sm-1">
-                            <select formControlName="pas1" (change)="onChoise(1)" [(ngModel)]="selectedRhythm" class="selectpicker">
-                                <option value="" selected disabled>اختر التفعيلة</option>
+                        <div *ngIf="typeBahr === 2 || typeBahr === 3 || typeBahr === 4 || typeBahr === 6 || typeBahr === 8" class="col-lg-2 col-md-2 col-sm-2">
+                            <select class="form-control" formControlName="pas1" (change)="onChoise(1)">
+                                <option [ngValue]="null" disabled selected>إختر التفعيلة ١</option>
                                 <option [ngValue]="rhythm" *ngFor="let rhythm of refRhythms">
                                     <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.parentId}}">{{rhythm.name}}</td>
                                     {{rhythm.name}}
@@ -24,9 +36,9 @@
                                 </option>
                             </select>
                         </div>
-                        <div class="col-lg-2 col-md-1 col-sm-1">
-                            <select formControlName="pas2" (change)="onChoise(2)" [(ngModel)]="selectedRhythm" class="selectpicker">
-                                <optgroup label="Classics" ></optgroup>
+                        <div *ngIf="typeBahr === 2 || typeBahr === 3 || typeBahr === 4 || typeBahr === 6 || typeBahr === 8" class="col-lg-2 col-md-2 col-sm-2">
+                            <select formControlName="pas2" (change)="onChoise(2)" class="form-control">
+                                <option  [ngValue]="null" disabled selected>إختر التفعيلة ٢</option>
                                 <option [ngValue]="rhythm" *ngFor="let rhythm of refRhythms">
                                     <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.parentId}}">{{rhythm.name}}</td>
                                     {{rhythm.name}}
@@ -34,9 +46,9 @@
                                 </option>
                             </select>
                         </div>
-                        <div class="col-lg-1 col-md-1 col-sm-1">
-                            <select formControlName="pas3" (change)="onChoise(3)" [(ngModel)]="selectedRhythm" class="selectpicker">
-                                <optgroup label="Classics" ></optgroup>
+                        <div *ngIf="typeBahr === 3 || typeBahr === 6 || typeBahr === 8" class="col-lg-2 col-md-2 col-sm-2">
+                            <select formControlName="pas3" (change)="onChoise(3)" class="form-control">
+                                <option  [ngValue]="null" disabled selected>إختر التفعيلة ٣</option>
                                 <option [ngValue]="rhythm" *ngFor="let rhythm of refRhythms">
                                     <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.parentId}}">{{rhythm.name}}</td>
                                     {{rhythm.name}}
@@ -44,49 +56,9 @@
                                 </option>
                             </select>
                         </div>
-                        <div class="col-lg-1 col-md-1 col-sm-1">
-                            <select formControlName="pas4" (change)="onChoise(4)" [(ngModel)]="selectedRhythm" class="selectpicker">
-                                <optgroup label="Classics" ></optgroup>
-                                <option [ngValue]="rhythm" *ngFor="let rhythm of refRhythms">
-                                    <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.parentId}}">{{rhythm.name}}</td>
-                                    {{rhythm.name}}
-                                    <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.transform}}">{{rhythm.transform}}</td>
-                                </option>
-                            </select>
-                        </div>
-                        <div class="col-lg-2 col-md-1 col-sm-1">
-                            <select formControlName="pas5" (change)="onChoise(5)" [(ngModel)]="selectedRhythm" class="selectpicker">
-                                <optgroup label="Classics" ></optgroup>
-                                <option [ngValue]="rhythm" *ngFor="let rhythm of refRhythms">
-                                    <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.parentId}}">{{rhythm.name}}</td>
-                                    {{rhythm.name}}
-                                    <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.transform}}">{{rhythm.transform}}</td>
-                                </option>
-                            </select>
-                        </div>
-                        <div class="col-lg-2 col-md-1 col-sm-1">
-                            <select formControlName="pas6" (change)="onChoise(6)" [(ngModel)]="selectedRhythm" class="selectpicker">
-                                <optgroup label="Classics" ></optgroup>
-                                <option [ngValue]="rhythm" *ngFor="let rhythm of refRhythms">
-                                    <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.parentId}}">{{rhythm.name}}</td>
-                                    {{rhythm.name}}
-                                    <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.transform}}">{{rhythm.transform}}</td>
-                                </option>
-                            </select>
-                        </div>
-                        <div class="col-lg-1 col-md-1 col-sm-1">
-                            <select formControlName="pas7" (change)="onChoise(7)" [(ngModel)]="selectedRhythm" class="selectpicker">
-                                <optgroup label="Classics" ></optgroup>
-                                <option [ngValue]="rhythm" *ngFor="let rhythm of refRhythms">
-                                    <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.parentId}}">{{rhythm.name}}</td>
-                                    {{rhythm.name}}
-                                    <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.transform}}">{{rhythm.transform}}</td>
-                                </option>
-                            </select>
-                        </div>
-                        <div class="col-lg-1 col-md-1 col-sm-1">
-                            <select formControlName="pas8" (change)="onChoise(8)" [(ngModel)]="selectedRhythm" class="selectpicker">
-                                <optgroup label="Classics" ></optgroup>
+                        <div *ngIf="typeBahr === 8" class="col-lg-2 col-md-2 col-sm-2">
+                            <select formControlName="pas4" (change)="onChoise(4)" class="form-control">
+                                <option  [ngValue]="null" disabled selected>إختر التفعيلة ٤</option>
                                 <option [ngValue]="rhythm" *ngFor="let rhythm of refRhythms">
                                     <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.parentId}}">{{rhythm.name}}</td>
                                     {{rhythm.name}}
@@ -95,20 +67,59 @@
                             </select>
                         </div>
                     </div>
-                            <button type="submit" id="search-entity1" (click)="searchByRhythms()" [disabled]="searchForm.invalid || isSearching" class="btn btn-primary">
-                                <fa-icon [icon]="'search'"></fa-icon>&nbsp;<span jhiTranslate="metarabApp.bahrCombine.home.search1">Search</span>
-                            </button>
-
-
+                    <div class="row form-row my-1">
+                        <div *ngIf="typeBahr === 4 || typeBahr === 6 || typeBahr === 8" class="col-lg-4 col-md-4 col-sm-4">
+                        </div>
+                        <div *ngIf="typeBahr === 4 || typeBahr === 6 || typeBahr === 8" class="col-lg-2 col-md-2 col-sm-2">
+                            <select formControlName="pas5" (change)="onChoise(5)" class="form-control">
+                                <option  [ngValue]="null" disabled selected>إختر التفعيلة ٥</option>
+                                <option [ngValue]="rhythm" *ngFor="let rhythm of refRhythms">
+                                    <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.parentId}}">{{rhythm.name}}</td>
+                                    {{rhythm.name}}
+                                    <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.transform}}">{{rhythm.transform}}</td>
+                                </option>
+                            </select>
+                        </div>
+                        <div *ngIf="typeBahr === 4 || typeBahr === 6 || typeBahr === 8" class="col-lg-2 col-md-2 col-sm-2">
+                            <select formControlName="pas6" (change)="onChoise(6)" class="form-control">
+                                <option  [ngValue]="null" disabled selected>إختر التفعيلة ٦</option>
+                                <option [ngValue]="rhythm" *ngFor="let rhythm of refRhythms">
+                                    <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.parentId}}">{{rhythm.name}}</td>
+                                    {{rhythm.name}}
+                                    <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.transform}}">{{rhythm.transform}}</td>
+                                </option>
+                            </select>
+                        </div>
+                        <div *ngIf="typeBahr === 6 || typeBahr === 8" class="col-lg-2 col-md-2 col-sm-2">
+                            <select formControlName="pas7" (change)="onChoise(7)" class="form-control">
+                                <option  [ngValue]="null" disabled selected>إختر التفعيلة ٧</option>
+                                <option [ngValue]="rhythm" *ngFor="let rhythm of refRhythms">
+                                    <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.parentId}}">{{rhythm.name}}</td>
+                                    {{rhythm.name}}
+                                    <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.transform}}">{{rhythm.transform}}</td>
+                                </option>
+                            </select>
+                        </div>
+                        <div *ngIf="typeBahr === 8" class="col-lg-2 col-md-2 col-sm-2">
+                            <select formControlName="pas8" (change)="onChoise(8)" class="form-control">
+                                <option  [ngValue]="null" disabled selected>إختر التفعيلة ٨</option>
+                                <option [ngValue]="rhythm" *ngFor="let rhythm of refRhythms">
+                                    <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.parentId}}">{{rhythm.name}}</td>
+                                    {{rhythm.name}}
+                                    <td jhiTranslate="{{'metarabApp.Transform.' + rhythm.transform}}">{{rhythm.transform}}</td>
+                                </option>
+                            </select>
+                        </div>
+                    </div>
                 </form>
-
-
-
-
             </div>
-
         </div>
         <div class="card-footer text-muted">
+            <div class="mt-2">
+                <button type="submit" id="search-entity1" (click)="searchByRhythms()" [disabled]="searchForm.invalid || isSearching" class="btn btn-primary">
+                    <fa-icon [icon]="'search'"></fa-icon>&nbsp;<span jhiTranslate="metarabApp.bahrCombine.home.search1">Search</span>
+                </button>
+            </div>
             <div class="alert alert-warning" *ngIf="codeBahrs?.length === 0">
                 <span jhiTranslate="audits.notFound">Aucun code bahr trouvée</span>
             </div>

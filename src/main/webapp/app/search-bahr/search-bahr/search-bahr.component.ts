@@ -20,8 +20,10 @@ export class SearchBahrComponent implements OnInit {
   totalItems: any;
   bahrCombines: IBahrCombine[];
   codeBahrs: String[];
+  missingFields: boolean;
   refRhythms: IRefRhythm[];
-  selectedRhythm: IRefRhythm;
+  typeBahrs: number[] = [2, 3, 4, 6, 8];
+  typeBahr = 2;
   predicate: any;
   reverse: any;
   isSearching: boolean;
@@ -29,14 +31,15 @@ export class SearchBahrComponent implements OnInit {
   refBahrListMap: Map<number, IRefRhythm> = new Map<number, IRefRhythm>();
 
   searchForm = this.fb.group({
-    pas1: '',
-    pas2: '',
-    pas3: '',
-    pas4: '',
-    pas5: '',
-    pas6: '',
-    pas7: '',
-    pas8: ''
+    pasNumber: Number,
+    pas1: null,
+    pas2: null,
+    pas3: null,
+    pas4: null,
+    pas5: null,
+    pas6: null,
+    pas7: null,
+    pas8: null
   });
 
   constructor(
@@ -57,22 +60,22 @@ export class SearchBahrComponent implements OnInit {
   clear() {
     this.codeBahrs = null;
     this.searchForm = this.fb.group({
-      pas1: [null],
-      pas2: [null],
-      pas3: [null],
-      pas4: [null],
-      pas5: [null],
-      pas6: [null],
-      pas7: [null],
-      pas8: [null]
+      pasNumber: this.typeBahr,
+      pas1: null,
+      pas2: null,
+      pas3: null,
+      pas4: null,
+      pas5: null,
+      pas6: null,
+      pas7: null,
+      pas8: null
     });
   }
 
   onChoise(position: number) {
-    console.log('Tafila : valeur Rhythm  = ' + this.selectedRhythm.valeur);
-    this.refBahrListMap.set(position, this.selectedRhythm);
+    console.log('Tafila : valeur Rhythm  = ', this.searchForm.controls.pas1);
+    this.refBahrListMap.set(position, this.searchForm.controls.pas1.value);
     console.log('Tafila : indice Rhythm in map = ' + this.refBahrListMap.get(position));
-    this.selectedRhythm = null;
   }
 
   loadRhythms() {
@@ -101,11 +104,14 @@ export class SearchBahrComponent implements OnInit {
   searchByRhythms() {
     if (this.refBahrListMap && this.refBahrListMap.size > 1) {
       let rhythmBahr = '';
-      this.refBahrListMap.forEach(r => (rhythmBahr = r.valeur.concat(rhythmBahr)));
+      this.refBahrListMap.forEach(r => (rhythmBahr = r.valeur ? r.valeur.concat(rhythmBahr) : rhythmBahr));
       console.log('Rhythm Bahr : = ' + rhythmBahr);
       this.searchBahrBaitService
         .searchByBayt(rhythmBahr)
         .subscribe((res: HttpResponse<String[]>) => (this.codeBahrs = res.body), (res: HttpErrorResponse) => this.onError(res.message));
+      this.missingFields = false;
+    } else {
+      this.missingFields = true;
     }
   }
 
