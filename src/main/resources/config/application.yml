@@ -103,6 +103,17 @@ spring:
         implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
   messages:
     basename: i18n/messages
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: metarab.projet@gmail.com #Replace this field with your Gmail username.
+    password: met@r@bump2021 #Replace this field with your Gmail password/App password.
+    protocol: smtp
+    tls: true
+    properties.mail.smtp:
+      auth: true
+      starttls.enable: true
+      ssl.trust: smtp.gmail.com
   main:
     allow-bean-definition-overriding: true
   mvc:
@@ -151,7 +162,7 @@ jhipster:
   #     allow-credentials: true
   #     max-age: 1800
   mail:
-    from: metarab@localhost
+    from: metarab.projet@gmail.com
   swagger:
     default-include-pattern: /api/.*
     title: metarab API

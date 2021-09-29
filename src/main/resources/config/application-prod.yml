@@ -71,11 +71,6 @@ spring:
   # Replace by 'prod, faker' to add the faker context and have sample data loaded in production
   liquibase:
     contexts: prod
-  mail:
-    host: localhost
-    port: 25
-    username:
-    password:
   thymeleaf:
     cache: true
   sleuth:
@@ -141,7 +136,7 @@ jhipster:
         token-validity-in-seconds: 3600
         token-validity-in-seconds-for-remember-me: 86400
   mail: # specific JHipster mail property, for standard properties see MailProperties
-    base-url: http://my-server-url-to-change # Modify according to your server's URL
+    base-url: http://metarab.ump.ma # Modify according to your server's URL
   metrics:
     logs: # Reports metrics in the logs
       enabled: false
